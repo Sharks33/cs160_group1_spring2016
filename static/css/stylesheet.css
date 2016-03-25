@@ -1,6 +1,7 @@
 body {
     background-color: #181818;
     font-family: "Open Sans";
+    height:auto;
 }
 
 h1 {
@@ -84,4 +85,10 @@ input {
     position:absolute;
     bottom:0;
     left:0;
+}
+
+#missionStatement {
+}
+
+#instruction {
 }

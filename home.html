@@ -34,7 +34,54 @@
             });
         </script>
         <div id="header"></div>
-        <div id="map"></div>
+        <div class="container">
+          <div class="row">
+              <div id="map"></div>
+          </div>
+        </div>
+
+        <!-- Actual Index Page Customization -->
+        <div class="container" id="missionStatement">
+          <div class="row">
+            <h2 class="text-center"> <u>Our Mission</u> </h2>
+            <p>
+              Deliver and provide exceptional high end products at the lowest expense while making it
+              simpler for customers to purchase grocery and get it deliver at the speed of light.
+            </p>
+          </div>
+          <hr>
+        </div>
+
+        <div class="container" id="instruction">
+          <div class="row">
+            <h2 class="text-center"> <u> How to Use?</u> </h2>
+            <div class="col-md-4">
+              <p>
+                Register an account and login. Then click on "Shopping"
+              </p>
+              <p class="text-center">
+                <img src="static/img/register.png" alt="Register" />
+              </p>
+            </div>
+            <div class="col-md-4">
+              <p>
+                Select the items you wish to purchase and pay.
+              </p>
+              <p class="text-center">
+                <img src="static/img/shopping.jpg" alt="Shop" />
+              </p>
+            </div>
+            <div class="col-md-4">
+              <p>
+                Wait outside for Optimus Prime and pick up your grocery. That easy!
+              </p>
+              <p class="text-center">
+                <img src="static/img/candytruck.jpg" alt="Candy Truck" />
+              </p>
+            </div>
+          </div>
+        </div>
+
         <script>
           // Note: This example requires that you consent to location sharing when
           // prompted by your browser. If you see the error "The Geolocation service
@@ -75,6 +122,6 @@
           }
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
-        <div id="footer"></div>
+        <!-- <div id="footer"></div> -->
     </body>
 </html>

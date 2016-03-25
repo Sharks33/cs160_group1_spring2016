@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Shopping</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script>
+  $(function() {
+    $( "#accordion" ).accordion();
+    $( "input[type=submit], a, button" )
+      .button()
+      .click(function( event ) {
+        event.preventDefault();
+      });
+  });
+  </script>
+</head>
+<body>
+
+<div id="accordion">
+  <h3>Drugs</h3>
+  <div>
+    <img src="static/img/drug1.jpg" alt="drug" />
+    <button> Buy </button>
+    <img src="static/img/drug2.jpg" alt="drug" />
+    <button> Buy </button>
+  </div>
+  <h3>Meat Beater</h3>
+  <div>
+    <img src="static/img/meat(1).jpeg" alt="meat" />
+        <button> Buy </button>
+    <img src="static/img/meat(2).jpeg" alt="meat" />
+        <button> Buy </button>
+  </div>
+  <h3>Produce</h3>
+  <div>
+    <img src="static/img/produce(1).jpeg" alt="produce" />
+        <button> Buy </button>
+    <img src="static/img/produce(2).jpg" alt="produce" />
+        <button> Buy </button>
+  </div>
+  <h3>Diary</h3>
+  <div>
+    <img src="static/img/dairy.jpg" alt="dairy" />
+        <button> Buy </button>
+  </div>
+</div>
+
+<div id="cart">
+  <h2> List of Items Purchased in the Cart: </h2>
+  <ol>
+    <li>Dog: $4.20 (X)</li>
+    <li>Drugs: $9000 (X)</li>
+    <li>Dairy: $10,000,000 (X)</li>
+  </ol>
+  <p> Total Price : I can't do math. </p>
+  <button type="button" name="Pay"> Pay!</button>
+</div>
+
+
+</body>
+</html>

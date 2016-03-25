@@ -27,7 +27,7 @@
         </script>
         <div id="header"></div>
         <div>
-            <form action="main.php" method="post">
+            <form action="register.php" method="post">
 
                 <div class="modal-dialog">
                     <div class="loginmodal-container">
@@ -37,19 +37,17 @@
                             <input type="text" name="firstName" placeholder="First Name">
                             <input type="text" name="lastName" placeholder="Last Name">
                             <input type="text" name="email" placeholder="Email">
-                            <input type="password" name="password" placeholder="Password">
-                            <input type="password" name="password" placeholder="Confirm">
+                            <input type="password" name="password" placeholder="Password" id="password">
+                            <input type="password" name="password" placeholder="Confirm" id="confirmPass">
                             <input type="submit" name="login" class="login loginmodal-submit" value="Login">
                         </form>
-
                         <div class="login-help">
                             <a href="signIn.html">Already have an account?</a>
                         </div>
                     </div>
                 </div>
-
-                <div id="footer"></div>
             </form>
         </div>
+      <!-- <div id="footer"></div> -->
     </body>
 </html>
