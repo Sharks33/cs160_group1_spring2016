@@ -1,5 +1,5 @@
 <?php
   $usernameDB = "user";
   $passwordDB = "pass";
-  $database = "accounts"
+  $database = "my_cs160grocery"
  ?>
