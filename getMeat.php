@@ -1,4 +1,3 @@
-<h1> Get Meat </h1>
 <?php
 include 'connectionString.php';
 $conn = new mysqli("localhost", $usernameDB, $passwordDB, $database);
@@ -8,7 +7,11 @@ $result = $conn->query($query);
 if($result->num_rows > 0)
 {
   while($row = $result->fetch_assoc()) {
-    echo "<div><h5>" . $row["ProductName"] . "</h5><p>" . $row["Cost"] . "</p></div>";
+    echo "<div class='itemInfo'>
+    <h5>" . $row["ProductName"] . "</h5>
+    <p>" . $row["Cost"] . "</p>
+    <button value=" . $row["Cost"] . " type='button' class='btn btn-success buyButtonMeat'>Buy</button>
+    </div>";
   }
 }
 else {
@@ -16,3 +19,10 @@ else {
 }
 $conn->close();
 ?>
+<script type="text/javascript">
+$(".buyButtonMeat").click(function() {
+    var productName = $(this).siblings("h5").text();
+    var price = $(this).siblings("p").text();
+    addToList(productName, price);
+});
+</script>

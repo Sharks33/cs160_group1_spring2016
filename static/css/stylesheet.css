@@ -92,3 +92,17 @@ input {
 
 #instruction {
 }
+
+.itemInfo {
+  display:inline-block;
+  text-align:center;
+  height:20%;
+}
+
+.itemInfo p {
+  color:black;
+}
+
+.productName, .productPrice {
+  color:black;
+}
