@@ -1,4 +1,6 @@
-<!doctype html>
+<?php
+session_start();
+?>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -23,6 +25,11 @@
 </head>
 <body>
 
+<?php
+
+  if(isset($_SESSION['loggedin']) == FALSE)
+  {
+    echo <<<EOT
 <div class="container">
   <div class="row">
     <div id="accordion">
@@ -38,8 +45,6 @@
     </div>
   </div>
 </div>
-
-
 <div class="container">
     <div class="row">
         <h3><span class="glyphicon glyphicon-shopping-cart"></span>Shopping Cart List: </h3>
@@ -50,6 +55,19 @@
         <button type="button" class="btn btn-info"> Pay </button>
     </div>
 </div>
+EOT;
+  }
+  else {
+    echo <<<EOT
+<div class="container">
+  <div class="row">
+    <p class="text-center"> You are not logged in. </p>
+  </div>
+</div>
+EOT;
+  }
+
+ ?>
 
 </body>
 </html>

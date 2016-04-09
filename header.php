@@ -1,7 +1,6 @@
 <?php
 session_start();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -86,10 +85,7 @@ EOF;
                                 <td align="center">Contact </td>
                                 <td align="center">Register</td>
                                 <td align="center">
-                                  <a href="shop.html">Shop</a>
-                                </td>
-                                <td align="center">
-                                    <a href="aboutUs.html">About us</a>
+                                  <a href="shop.php">Shop</a>
                                 </td>
                             </tr>
                         </table>
