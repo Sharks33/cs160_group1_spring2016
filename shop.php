@@ -27,7 +27,7 @@ session_start();
 
 <?php
 
-  if(isset($_SESSION['loggedin']) == FALSE)
+  if(isset($_SESSION['loggedin']))
   {
     echo <<<EOT
 <div class="container">
