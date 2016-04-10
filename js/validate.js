@@ -1,3 +1,4 @@
+//This file to validate the create user and signin page
 function validate() {
     var errorRed = "rgb(229, 84, 81)";
     var goodGreen = "rgb(74, 160, 44)";
