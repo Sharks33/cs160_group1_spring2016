@@ -75,6 +75,6 @@ session_start();
         </div>
         <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
         <script src="./js/about_maps.js"></script>
-        <!-- <div id="footer"></div> -->
+        <?php include 'footer.php'; ?>
     </body>
 </html>
