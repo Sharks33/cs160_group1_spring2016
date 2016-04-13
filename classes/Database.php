@@ -28,7 +28,8 @@ class Database {
 
 		if (!empty($return)) {
 			$hash = $return['Password'];
-			if (password_verify($checkPass, $hash))
+			// if (password_verify($checkPass, $hash))
+			if(crypt($checkPass, $hash))
 				return true;
 			else
 				return false;
