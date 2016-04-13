@@ -17,13 +17,6 @@ session_start();
     </style>
     <body>
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-        <script>
-            $(function(){
-                $("#header").load("header.php");
-                $("#footer").load("footer.html");
-            });
-        </script>
-        <div id="header"></div>
 
         <?php
         if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
