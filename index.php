@@ -6,35 +6,12 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8"/>
-        <title>
-            Illegal Drugs Depot
-        </title>
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-        <!-- Latest compiled JavaScript -->
-         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-        <script src="js/validate.js"></script>
-
-        <link rel="stylesheet" type="text/css" href="static/css/stylesheet.css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="static/css/signInStyles.css" media="screen" />
-        <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-
-    </head>
+    <?php include 'header.php'; ?>
+    <title>
+        Illegal Drugs Depot
+    </title>
     <body>
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-        <script>
-            $(function(){
-                $("#header").load("header.php");
-                $("#footer").load("footer.html");
-            });
-        </script>
-        <div id="header"></div>
         <div>
             <form action="createUser.php" onsubmit="return validate()" method="post">
                 <div class="modal-dialog">
@@ -56,7 +33,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
                     </div>
                 </div>
 
-                <div id="footer"></div>
+                <?php include 'footer.php'; ?>
             </form>
         </div>
     </body>
