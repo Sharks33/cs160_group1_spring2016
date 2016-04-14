@@ -83,6 +83,9 @@ EOF;
                                 <td align="center">Contact </td>
                                 <td align="center">Register</td>
                                 <td align="center">
+                                  <a href="orderHistory.php">Order History </a>
+                                </td>
+                                <td align="center">
                                   <a href="shop.php">Shop</a>
                                 </td>
                             </tr>

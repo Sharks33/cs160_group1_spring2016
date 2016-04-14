@@ -14,4 +14,11 @@ define('DB_NAME', 'my_cs160grocery');
 define('DSN', 'mysql:host=localhost;dbname=my_cs160grocery');
 define('DB_PORT', '3306');
 
+// define('DB_SERVER', 'localhost');
+// define('DB_USER', 'user');
+// define('DB_PASSWORD', 'pass');
+// define('DB_NAME', 'my_cs160grocery');
+// define('DSN', 'mysql:host=localhost;dbname=my_cs160grocery');
+// define('DB_PORT', '3306');
+
 ?>

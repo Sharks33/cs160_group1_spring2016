@@ -53,6 +53,7 @@ session_start();
         <h3> Total Price: </h3>
         <div class="alert alert-success" role="alert" id="totalPrice"></div>
         <div id='warningItem'></div>
+        <div id='buyingItem'></div>
         <button type="button" class="btn btn-info" onclick="buyNow()"> Pay </button>
     </div>
 </div>
@@ -100,18 +101,35 @@ EOT;
           totalPrice += price;
         });
         // alert(totalPrice);
-        $("#totalPrice").text("$" + totalPrice);
+        $("#totalPrice").text(totalPrice);
       }
 
       function buyNow()
       {
-
+        var price = $("#totalPrice").text();
+        // alert(price);
+        if(price == "")
+        {
+          $("#buyingItem").html("<div class='alert alert-danger'> You didn't buy anything</div>");
+        }
+        else
+        {
+          $.ajax({
+               url: 'confirm.php',
+               type: "POST",
+               data: ({totalPrice: price}),
+               success: function(data){
+                //  alert("loading AJAX");
+                 $("body").html(data);
+               }
+          });
+        }
       }
 
       function unableToBuy(name)
       {
         $("#warningItem").show();
-        $("#warningItem").html("<div class='alert alert-danger'> <strong>Unable to add more " + name + " </strong></div>");
+        $("#warningItem").html("<div class='alert alert-danger'> Unable to add more " + name + " </div>");
       }
 
       function hideBuy()

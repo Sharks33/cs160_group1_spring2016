@@ -35,6 +35,5 @@ $(".buyButtonMeat").click(function() {
     else {
       unableToBuy(productName);
     }
-
 });
 </script>
