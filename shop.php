@@ -27,7 +27,7 @@ session_start();
 
 <?php
 
-  if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && $_SESSION['username'] != null)
+  if(isset($_SESSION['loggedin']) == false)
   {
     echo <<<EOT
 <div class="container">
@@ -52,7 +52,8 @@ session_start();
         </table>
         <h3> Total Price: </h3>
         <div class="alert alert-success" role="alert" id="totalPrice"></div>
-        <button type="button" class="btn btn-info"> Pay </button>
+        <div id='warningItem'></div>
+        <button type="button" class="btn btn-info" onclick="buyNow()"> Pay </button>
     </div>
 </div>
 EOT;
@@ -100,5 +101,21 @@ EOT;
         });
         // alert(totalPrice);
         $("#totalPrice").text("$" + totalPrice);
+      }
+
+      function buyNow()
+      {
+
+      }
+
+      function unableToBuy(name)
+      {
+        $("#warningItem").show();
+        $("#warningItem").html("<div class='alert alert-danger'> <strong>Unable to add more " + name + " </strong></div>");
+      }
+
+      function hideBuy()
+      {
+        $("div#warningItem").hide();
       }
 </script>
