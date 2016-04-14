@@ -27,7 +27,7 @@ session_start();
 
 <?php
 
-  if(isset($_SESSION['loggedin']))
+  if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && $_SESSION['username'] != null)
   {
     echo <<<EOT
 <div class="container">
@@ -61,7 +61,7 @@ EOT;
     echo <<<EOT
 <div class="container">
   <div class="row">
-    <p class="text-center"> You are not logged in. </p>
+    <p class="text-center" style="color:salmon; padding-top:10%; font-size:36px"> You are not logged in. </p>
   </div>
 </div>
 EOT;
