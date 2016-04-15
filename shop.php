@@ -28,7 +28,7 @@ session_start();
 
 <?php
 
-  if(isset($_SESSION['loggedin']) == false)
+  if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE)
   {
     echo <<<EOT
 <div class="container">
@@ -70,7 +70,10 @@ EOT;
     echo <<<EOT
 <div class="container">
   <div class="row">
-    <p class="text-center" style="color:salmon; padding-top:10%; font-size:36px"> You are not logged in. </p>
+    <p class="text-center" style="color:salmon; padding-top:10%; font-size:36px"> You are not logged in. Head back home and sign in. </p>
+    <p class="text-center">
+      <button type="button" class="btn btn-primary btn-lg" onclick="goToPage('home.php')"> Home </button>
+    </p>
   </div>
 </div>
 EOT;
