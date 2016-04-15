@@ -6,7 +6,7 @@ $conn = new mysqli("localhost", $usernameDB, $passwordDB, $database);
 
 if(!$conn) { die("Connection failed: " . $conn->connect_error);}
 
-$query = "UPDATE Product SET Quantity = Quantity - 1 WHERE ProductID = $productId AND Quantity > 0";
+$query = "UPDATE Produce SET Quantity = Quantity - 1 WHERE ProductID = $productId AND Quantity > 0";
 
 $conn -> query($query);
 
