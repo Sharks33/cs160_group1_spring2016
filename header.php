@@ -1,7 +1,5 @@
-<?php
-session_start();
-?>
-    <head>
+
+  <head>
         <meta charset="UTF-8"/>
         <title>
             Welcome to Wayknack!
@@ -79,9 +77,7 @@ EOF;
                                 }
                                 ?>
                                 </td>
-
-                                <td align="center">Contact </td>
-                                <td align="center">Register</td>
+                                <!-- <td align="center">Register</td> -->
                                 <td align="center">
                                   <a href="orderHistory.php">Order History </a>
                                 </td>

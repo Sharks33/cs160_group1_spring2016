@@ -33,13 +33,13 @@ session_start();
 <div class="container">
   <div class="row">
     <div id="accordion">
-      <h3 id="Meat">Meat</h3>
+      <h3 id="Meat" class='list'>Meat</h3>
       <div id="MeatList">
       </div>
-      <h3 id="Produce">Produce</h3>
+      <h3 id="Produce" class='list'>Produce</h3>
       <div id="ProduceList">
       </div>
-      <h3 id="Dairy">Diary</h3>
+      <h3 id="Dairy" class='list'>Diary</h3>
       <div id="DairyList">
       </div>
     </div>
@@ -54,6 +54,7 @@ session_start();
         <div class="alert alert-success" role="alert" id="totalPrice"></div>
         <div id='warningItem'></div>
         <div id='buyingItem'></div>
+        <div id='sqlState'></div>
         <button type="button" class="btn btn-info" onclick="buyNow()"> Pay </button>
     </div>
 </div>
@@ -68,7 +69,6 @@ EOT;
 </div>
 EOT;
   }
-
  ?>
 
 </body>
@@ -87,7 +87,15 @@ EOT;
       });
 
       // Add name and price of product to the shopping cart list table
-      function addToList(name, price) {
+      function addToList(name, price, category, id) {
+        $.ajax({
+          url: "update" + category + ".php",
+          data: {'ProductId' : id},
+          type: "POST",
+          success: function(data){
+              $('#sqlState').html(data);
+          }
+      });
         $("#shoppingListTable").append("<tr><td class='productName'>" + name + "<td><td class='productPrice' value=" + price + ">" + price + "</td></tr>");
         updateShoppingCart();
       }
