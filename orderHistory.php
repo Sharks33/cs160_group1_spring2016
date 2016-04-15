@@ -16,12 +16,16 @@ if (mysqli_connect_errno())
 $sql="SELECT * FROM OrderTemps";
 $result=mysqli_query($con,$sql);
 
+echo "<div class='container'>";
+echo "<div class='row'>";
+echo "<h3> Order History </h3>";
 echo "<table class='table table-bordered'>";
 
 while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
   echo "<tr><td> ProductName: " . $row["ProductName"] . "</td><td> Cost: " . $row["Cost"] . "</td></tr>";
 }
 echo "</table>";
+echo "</div></div>";
 
 // Free result set
 mysqli_free_result($result);

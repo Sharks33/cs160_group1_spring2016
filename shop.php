@@ -25,6 +25,7 @@ session_start();
 </head>
 <body>
 
+
 <?php
 
   if(isset($_SESSION['loggedin']) == false)
@@ -32,6 +33,7 @@ session_start();
     echo <<<EOT
 <div class="container">
   <div class="row">
+    <h2> Shopping: </h2>
     <div id="accordion">
       <h3 id="Meat" class='list'>Meat</h3>
       <div id="MeatList">
@@ -44,18 +46,22 @@ session_start();
       </div>
     </div>
   </div>
+  <hr>
 </div>
 <div class="container">
     <div class="row">
         <h3><span class="glyphicon glyphicon-shopping-cart"></span>Shopping Cart List: </h3>
+        <hr>
         <table class="table table-striped table-bordered" id="shoppingListTable">
         </table>
         <h3> Total Price: </h3>
         <div class="alert alert-success" role="alert" id="totalPrice"></div>
+        <hr>
         <div id='warningItem'></div>
         <div id='buyingItem'></div>
         <div id='sqlState'></div>
-        <button type="button" class="btn btn-info" onclick="buyNow()"> Pay </button>
+        <button type="button" class="btn btn-success" onclick="buyNow()"> Pay </button>
+        <button type="button" class="btn btn-info" onclick="goToPage('home.php')"> Go Home </button>
     </div>
 </div>
 EOT;
@@ -70,7 +76,6 @@ EOT;
 EOT;
   }
  ?>
-
 </body>
 </html>
 
@@ -90,7 +95,7 @@ EOT;
       function addToList(name, price, category, id) {
         $.ajax({
           url: "update" + category + ".php",
-          data: {'ProductId' : id, "ProductName" : name, "Cost" : price},
+          data: {'ProductId' : id, "ProductName" : name, },
           type: "POST",
           success: function(data){
               $('#sqlState').html(data);
@@ -143,5 +148,10 @@ EOT;
       function hideBuy()
       {
         $("div#warningItem").hide();
+      }
+
+      function goToPage(page)
+      {
+        window.location.href = page;
       }
 </script>

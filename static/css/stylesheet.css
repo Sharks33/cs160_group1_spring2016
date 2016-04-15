@@ -1,14 +1,7 @@
 body {
-    background-color: #181818;
+    background-color:#F1F1F1;
     font-family: "Open Sans";
     height:auto;
-}
-
-h1 {
-    background-color: #666666;
-    padding-left: 50px;
-    padding-right: 50px;
-    color: cyan;
 }
 
 legend {
@@ -23,21 +16,8 @@ legend {
 }
 
 p {
-    color:black;
     padding-left: 50px;
     padding-right: 50px;
-}
-
-td {
-    color:cyan;
-}
-
-a {
-    color:cyan;
-}
-
-a:hover {
-    color:orange;
 }
 
 img.sharks {
@@ -50,7 +30,7 @@ img.sharks {
 }
 
 #pageLinks {
-    background-color: #181818;
+    background-color:
 }
 
 #aboutUs {
@@ -58,10 +38,6 @@ img.sharks {
     font-size: 40px;
     font-weight: bold;
     background-color: #343C45;
-}
-
-header {
-    background-color: #181818;
 }
 
 input {
@@ -97,12 +73,4 @@ input {
   display:inline-block;
   text-align:center;
   height:20%;
-}
-
-.itemInfo p {
-  color:black;
-}
-
-.productName, .productPrice {
-  color:black;
 }
