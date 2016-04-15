@@ -90,7 +90,7 @@ EOT;
       function addToList(name, price, category, id) {
         $.ajax({
           url: "update" + category + ".php",
-          data: {'ProductId' : id},
+          data: {'ProductId' : id, "ProductName" : name, "Cost" : price},
           type: "POST",
           success: function(data){
               $('#sqlState').html(data);

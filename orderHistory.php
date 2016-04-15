@@ -5,36 +5,27 @@ session_start();
 <body>
 <?php
 include 'connectionString.php';
-$conn = new mysqli("localhost", $usernameDB, $passwordDB, $database);
-if($conn -> connect_error) { die("Connection failed: " . $conn->connect_error);}
-$query = "SELECT `ProductName`,`Cost` FROM `Dairy`";
-$result = $conn->query($query);
-if($result->num_rows > 0)
-{
-  while($row = $result->fetch_assoc()) {
-    echo "<div class='itemInfo'>
-    <h5>" . $row["ProductName"] . "</h5>
-    <p>" . $row["Cost"] . "</p>
-    <button value=" . $row["Cost"] . " type='button' class='btn btn-success buyButtonDairy'>Buy</button>
-    </div>";
-  }
-}
-else {
-  echo "Fail: You are not logged in due to incorrect username or password.";
-}
-$conn->close();
-?>
 
-<?php
-    echo"
-    <div class='container' style='padding-top:20%'>
-    <div class='row'>
-    <div class='jumbotron'>
-    <h2> Thank you for purchasing </h2>
-    <p style='color:black'> Confirmation page your order has been placed. Head over to Order History to check your purchases! </p>
-    </div>
-    </div>
-    </div>";
+$con=mysqli_connect("localhost",$usernameDB,$passwordDB,$database);
+// Check connection
+if (mysqli_connect_errno())
+  {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  }
+
+$sql="SELECT * FROM OrderTemps";
+$result=mysqli_query($con,$sql);
+
+echo "<table class='table table-bordered'>";
+
+while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
+  echo "<tr><td> ProductName: " . $row["ProductName"] . "</td><td> Cost: " . $row["Cost"] . "</td></tr>";
+}
+echo "</table>";
+
+// Free result set
+mysqli_free_result($result);
+
+mysqli_close($con);
 ?>
 </body>
-</html>
