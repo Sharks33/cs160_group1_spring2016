@@ -4,6 +4,7 @@
   $totalPrice = $_POST['TotalPrice'];
   $cartItems = json_decode($_POST['CartItems'], true);
   $user = $_POST['UserName'];
+  $_SESSION['UserName'] = $user;
 
   echo <<<HEREDOC
   <div class="container">
@@ -49,7 +50,30 @@ EOT;
       $("#panel-body").text("Thank you. Your groceries have been purchased and your credit card has been processed. Checkout your purchase history to see what groceries you have bought and estimated time of arrival. Have a nice ass day!");
       $("#homeIcon").fadeIn('slow');
       $("#itemContainer").fadeOut('slow');
+
+      var cartItems = [];
+
+      $(".productInfo").each(function()
+      {
+        var name = $(this).find("td.productName").text();
+        // alert(name);
+        var cost = $(this).find("td.cost").text();
+        // alert(cost);
+        cartItems.push({"ProductName" : name, "Cost" : cost});
+      });
+
+      var user = $("#userName").text();
+      $.ajax({
+        url: 'processOrder.php',
+        type: 'POST',
+        data: {"CartItems": JSON.stringify(cartItems), "UserName": user},
+        success: function(data)
+        {
+          $("html").html(data);
+        }
+      });
     }
+
     function backAndEdit()
     {
       window.location.href = "shop.php";

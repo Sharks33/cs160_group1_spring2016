@@ -103,13 +103,13 @@ EOT;
         // alert(name + price + category + id + userName);
         $.ajax({
           url: "update" + category + ".php",
-          data: {'ProductId' : id, "ProductName" : name, "Cost" : price },
+          data: {'ProductId':id, "ProductName":name, "Cost":price },
           type: "POST",
           success: function(data){
               $('#sqlState').html(data);
           }
       });
-        cartItems.push({"ProductName": name, "Cost": price, "UserName": userName});
+        cartItems.push({"ProductName":name, "Cost":price, "UserName":userName});
         // seeCarItems();
         $("#shoppingListTable").append("<tr><td class='productName'>" + name + "<td><td class='productPrice' value=" + price + ">" + price + "</td></tr>");
         updateShoppingCart();

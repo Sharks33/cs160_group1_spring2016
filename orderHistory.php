@@ -1,35 +1,29 @@
 <?php
 session_start();
 ?>
-<?php include 'header.php'; ?>
-<body>
-<?php
-include 'connectionString.php';
 
-$con=mysqli_connect("localhost",$usernameDB,$passwordDB,$database);
-// Check connection
-if (mysqli_connect_errno())
-  {
-  echo "Failed to connect to MySQL: " . mysqli_connect_error();
-  }
+<html>
+  <?php include 'header.php'; ?>
+  <title> Process Order </title>
+  <body>
+    <?php
+    include 'connectionString.php';
+    $user = trim($_SESSION['UserName']);
+    $con = mysqli_connect("localhost", $usernameDB, $passwordDB, $database);
+    if (mysqli_connect_errno()) { echo "Failed to connect to MySQL: " . mysqli_connect_error(); }
+    $query = "SELECT * FROM Purchase WHERE UserName = '$user'";
+    $result=mysqli_query($con,$query);
 
-$sql="SELECT * FROM OrderTemps";
-$result=mysqli_query($con,$sql);
-
-echo "<div class='container'>";
-echo "<div class='row'>";
-echo "<h3> Order History </h3>";
-echo "<table class='table table-bordered'>";
-
-while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
-  echo "<tr><td> ProductName: " . $row["ProductName"] . "</td><td> Cost: " . $row["Cost"] . "</td></tr>";
-}
-echo "</table>";
-echo "</div></div>";
-
-// Free result set
-mysqli_free_result($result);
-
-mysqli_close($con);
-?>
-</body>
+    echo <<<EOT
+    <div class="container">
+      <div class="row">
+EOT;
+    echo "<h2>" . $_SESSION['firstName'] . "'s Order History </h2><table class='table table-bordered'>";
+    echo "<tr><th>Product Name </th><th> Cost </th></tr>";
+    while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
+        echo "<tr><td>".$row["ProductName"]."</td><td>".$row["Cost"]."</td></tr>";
+    }
+    echo "</table></div></div>"
+    ?>
+  </body>
+</html>

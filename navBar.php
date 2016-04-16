@@ -17,6 +17,7 @@
         <ul class="nav navbar-nav navbar-right">
         <li><a href="home.php">Home</a></li>
         <li><a href="shop.php">Shop</a></li>
+        <li><a href="orderHistory.php"> Order History </a></li>
         <?php
     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
         echo "<li><a href=\"profile.php\">My Profile</a></li>";
