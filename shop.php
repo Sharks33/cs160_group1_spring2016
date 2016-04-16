@@ -137,7 +137,7 @@ EOT;
           $.ajax({
                url: 'confirm.php',
                type: "POST",
-               data: ({totalPrice: price}),
+               data: ({TotalPrice: price, CartItems: JSON.stringify(cartItems)}),
                success: function(data){
                 //  alert("loading AJAX");
                  $("body").html(data);
