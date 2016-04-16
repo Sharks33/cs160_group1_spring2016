@@ -10,7 +10,7 @@ session_start();
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   <link rel="stylesheet" href="static/css/stylesheet.css">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script>
+  <script type="text/javascript">
   $(function() {
     $("#accordion").accordion({
           heightStyle: "content"
@@ -30,57 +30,57 @@ session_start();
   if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE)
   {
     $user = $_SESSION['username'];
-
     echo <<<EOT
-<div class="container">
-  <div class="row">
-    <h2 id="userName"> $user </h2>
-    <hr>
-    <h2> Shopping: </h2>
-    <div id="accordion">
-      <h3 id="Meat" class='list'>Meat</h3>
-      <div id="MeatList">
+    <div class="container">
+      <div class="row">
+        <h2 id="userName"> $user </h2>
+        <hr>
+        <h2> Shopping: </h2>
+        <div id="accordion">
+          <h3 id="Meat" class='list'>Meat</h3>
+          <div id="MeatList">
+          </div>
+          <h3 id="Produce" class='list'>Produce</h3>
+          <div id="ProduceList">
+          </div>
+          <h3 id="Dairy" class='list'>Diary</h3>
+          <div id="DairyList">
+          </div>
+        </div>
       </div>
-      <h3 id="Produce" class='list'>Produce</h3>
-      <div id="ProduceList">
-      </div>
-      <h3 id="Dairy" class='list'>Diary</h3>
-      <div id="DairyList">
+      <hr>
+    </div>
+    <div class="container">
+        <div class="row">
+            <h3><span class="glyphicon glyphicon-shopping-cart"></span>Shopping Cart List: </h3>
+            <hr>
+            <table class='table table-striped table-bordered' id='shoppingListTable'></table>
+            <h3> Total Price: </h3>
+            <div class="alert alert-success" role="alert" id="totalPrice"></div>
+            <hr>
+            <div id='warningItem'></div>
+            <div id='buyingItem'></div>
+            <div id='sqlState'></div>
+            <button type="button" class="btn btn-success" onclick="buyNow()"> Pay </button>
+            <button type="button" class="btn btn-info" onclick="goToPage('home.php')"> Go Home </button>
       </div>
     </div>
-  </div>
-  <hr>
-</div>
-<div class="container">
-    <div class="row">
-        <h3><span class="glyphicon glyphicon-shopping-cart"></span>Shopping Cart List: </h3>
-        <hr>
-        <table class="table table-striped table-bordered" id="shoppingListTable">
-        </table>
-        <h3> Total Price: </h3>
-        <div class="alert alert-success" role="alert" id="totalPrice"></div>
-        <hr>
-        <div id='warningItem'></div>
-        <div id='buyingItem'></div>
-        <div id='sqlState'></div>
-        <button type="button" class="btn btn-success" onclick="buyNow()"> Pay </button>
-        <button type="button" class="btn btn-info" onclick="goToPage('home.php')"> Go Home </button>
-    </div>
-</div>
 EOT;
   }
+
   else {
     echo <<<EOT
-<div class="container">
-  <div class="row">
-    <p class="text-center" style="color:salmon; padding-top:10%; font-size:36px"> You are not logged in. Head back home and sign in. </p>
-    <p class="text-center">
-      <button type="button" class="btn btn-primary btn-lg" onclick="goToPage('home.php')"> Home </button>
-    </p>
+  <div class="container">
+    <div class="row">
+      <p class="text-center" style="color:salmon; padding-top:10%; font-size:36px"> You are not logged in. Head back home and sign in. </p>
+      <p class="text-center">
+        <button type="button" class="btn btn-primary btn-lg" onclick="goToPage('home.php')"> Home </button>
+      </p>
+    </div>
   </div>
-</div>
 EOT;
   }
+
  ?>
 </body>
 </html>
@@ -97,6 +97,7 @@ EOT;
             $("#" + itemList).load(getPage);
           }
       });
+
       // Add name and price of product to the shopping cart list table
       function addToList(name, price, category, id, userName) {
         // alert(name + price + category + id + userName);
@@ -113,6 +114,7 @@ EOT;
         $("#shoppingListTable").append("<tr><td class='productName'>" + name + "<td><td class='productPrice' value=" + price + ">" + price + "</td></tr>");
         updateShoppingCart();
       }
+
       // Triggered whenever an item is added into the shopping cart list table
       function updateShoppingCart()
       {
@@ -124,9 +126,11 @@ EOT;
         // alert(totalPrice);
         $("#totalPrice").text(totalPrice);
       }
+
       function buyNow()
       {
         var price = $("#totalPrice").text();
+        var user = $("#userName").text();
         // alert(price);
         if(price == "")
         {
@@ -137,27 +141,30 @@ EOT;
           $.ajax({
                url: 'confirm.php',
                type: "POST",
-               data: ({TotalPrice: price, CartItems: JSON.stringify(cartItems)}),
+               data: ({TotalPrice: price, CartItems: JSON.stringify(cartItems), UserName: user}),
                success: function(data){
-                //  alert("loading AJAX");
                  $("body").html(data);
                }
           });
         }
       }
+
       function unableToBuy(name)
       {
         $("#warningItem").show();
         $("#warningItem").html("<div class='alert alert-danger'> Unable to add more " + name + " </div>");
       }
+
       function hideBuy()
       {
         $("div#warningItem").hide();
       }
+
       function goToPage(page)
       {
         window.location.href = page;
       }
+
       function seeCarItems()
       {
         for(var i = 0; i < cartItems.length; i++)

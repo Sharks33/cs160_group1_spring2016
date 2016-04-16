@@ -15,6 +15,7 @@ if($_POST && !empty($_POST['username']) && !empty($_POST['password'])) {
         $_SESSION['firstName'] = $first;
         $last = $user->getLastName();
         $_SESSION['lastName'] = $last;
+        $_SESSION['reshop'] = false;
         header("Location: home.php");
         exit();
     }
