@@ -30,9 +30,10 @@ $(".buyButtonProduce").click(function() {
     var price = $(this).siblings("p#cost").text();
     var quantity = $(this).siblings("p#quantity").text();
     var productId = $(this).siblings("h5.productId").attr("id");
+    var userName = $("#userName").text();
     if(quantity > 0)
     {
-      addToList(productName, price, "Produce", productId);
+      addToList(productName, price, "Produce", productId, userName);
       quantity = quantity - 1;
       $(this).siblings("p#quantity").text(quantity);
     }

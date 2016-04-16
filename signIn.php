@@ -1,8 +1,7 @@
 <?php
 require 'classes/User.php';
-
 session_start();
-
+ob_start();
 if($_POST && !empty($_POST['username']) && !empty($_POST['password'])) {
     $pass = $_POST['password'];
     $user = new User($_POST['username'], null, null, null, $pass);
@@ -16,11 +15,11 @@ if($_POST && !empty($_POST['username']) && !empty($_POST['password'])) {
         $_SESSION['firstName'] = $first;
         $last = $user->getLastName();
         $_SESSION['lastName'] = $last;
-
         header("Location: home.php");
         exit();
     }
 }
+ob_end_flush();
 ?>
 
 <!DOCTYPE html>

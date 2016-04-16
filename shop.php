@@ -27,12 +27,15 @@ session_start();
 
 
 <?php
-
   if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE)
   {
+    $user = $_SESSION['username'];
+
     echo <<<EOT
 <div class="container">
   <div class="row">
+    <h2 id="userName"> $user </h2>
+    <hr>
     <h2> Shopping: </h2>
     <div id="accordion">
       <h3 id="Meat" class='list'>Meat</h3>
@@ -83,6 +86,7 @@ EOT;
 </html>
 
 <script type="text/javascript">
+      var cartItems = [];
 
       $(document).ready(function(){
           var products = ['Meat', 'Produce', 'Dairy'];
@@ -93,21 +97,22 @@ EOT;
             $("#" + itemList).load(getPage);
           }
       });
-
       // Add name and price of product to the shopping cart list table
-      function addToList(name, price, category, id) {
+      function addToList(name, price, category, id, userName) {
+        // alert(name + price + category + id + userName);
         $.ajax({
           url: "update" + category + ".php",
-          data: {'ProductId' : id, "ProductName" : name, },
+          data: {'ProductId' : id, "ProductName" : name, "Cost" : price },
           type: "POST",
           success: function(data){
               $('#sqlState').html(data);
           }
       });
+        cartItems.push({"ProductName": name, "Cost": price, "UserName": userName});
+        // seeCarItems();
         $("#shoppingListTable").append("<tr><td class='productName'>" + name + "<td><td class='productPrice' value=" + price + ">" + price + "</td></tr>");
         updateShoppingCart();
       }
-
       // Triggered whenever an item is added into the shopping cart list table
       function updateShoppingCart()
       {
@@ -119,7 +124,6 @@ EOT;
         // alert(totalPrice);
         $("#totalPrice").text(totalPrice);
       }
-
       function buyNow()
       {
         var price = $("#totalPrice").text();
@@ -141,20 +145,26 @@ EOT;
           });
         }
       }
-
       function unableToBuy(name)
       {
         $("#warningItem").show();
         $("#warningItem").html("<div class='alert alert-danger'> Unable to add more " + name + " </div>");
       }
-
       function hideBuy()
       {
         $("div#warningItem").hide();
       }
-
       function goToPage(page)
       {
         window.location.href = page;
+      }
+      function seeCarItems()
+      {
+        for(var i = 0; i < cartItems.length; i++)
+        {
+          console.log("ProductName: " + cartItems[i]["ProductName"]);
+          console.log("Cost: " + cartItems[i]["Cost"]);
+          console.log("UserName: " + cartItems[i]["UserName"]);
+        }
       }
 </script>

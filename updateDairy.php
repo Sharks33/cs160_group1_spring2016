@@ -17,14 +17,14 @@ $conn -> query($query); // decrement quantity by 1
 //     echo "<p>Error updating record: " . $conn->error . "</p>";
 // }
 
-$query = "INSERT INTO OrderTemps (ProductName, Cost) VALUES ('$productName','$cost')";
-
-$conn -> query($query);
-// if ($conn->query($query) === TRUE) {
-//     echo "<p> Record updated successfully into OrderTemps with " . $productId . "</p>";
-// } else {
-//     echo "<p>Error updating record: " . $conn->error . "</p>";
-// }
+// $query = "INSERT INTO OrderTemps (ProductName, Cost) VALUES ('$productName','$cost')";
+//
+// $conn -> query($query);
+// // if ($conn->query($query) === TRUE) {
+// //     echo "<p> Record updated successfully into OrderTemps with " . $productId . "</p>";
+// // } else {
+// //     echo "<p>Error updating record: " . $conn->error . "</p>";
+// // }
 $conn->close();
 
 ?>
