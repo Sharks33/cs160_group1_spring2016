@@ -24,10 +24,10 @@
     }
     else {
       include 'showLoginModal.php';
+      echo '<li><a href="index.php">Register</a></li>';
+      echo '<li><a href="#" data-toggle="modal" data-target="#login-modal">Sign In</a></li>';
     }
     ?>
-        <li><a href="#" data-toggle="modal" data-target="#login-modal">Sign In</a></li>
-        <li><a href="index.php">Register</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->

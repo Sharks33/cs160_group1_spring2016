@@ -13,7 +13,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
     <body>
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <div>
-            <form action="createUser.php" onsubmit="return validate()" method="post">
+            <form action="signIn.php" onsubmit="return validate()" method="post">
                 <div class="modal-dialog">
                     <div class="loginmodal-container">
                         <h1>CREATE ACCOUNT</h1><br>
@@ -36,5 +36,6 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
                 <?php include 'footer.php'; ?>
             </form>
         </div>
+        <script src="js/validate.js"></script>
     </body>
 </html>

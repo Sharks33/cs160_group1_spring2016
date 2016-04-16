@@ -21,7 +21,6 @@ if($_POST && !empty($_POST['username']) && !empty($_POST['password'])) {
         exit();
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -32,31 +31,7 @@ if($_POST && !empty($_POST['username']) && !empty($_POST['password'])) {
   </title>
     <body>
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-        <script>
-            function validateInput() {
-                var errorRed = "rgb(229, 84, 81)";
-                var goodGreen = "rgb(74, 160, 44)";
-                var errors = "";
-
-                var uname = document.getElementById("username").value;
-
-                if (uname == "") {
-                    errors += "Username is required.\n"
-                    document.getElementById("username").style.background = errorRed;
-                }
-
-                var pass = document.getElementById("password").value;
-                if (pass == "") {
-                    errors += "Password is required.\n";
-                    document.getElementById("password").style.background = errorRed;
-                }
-
-                if (errors) {
-                    alert(errors);
-                    return false;
-                }
-            }
-        </script>
+        <script src="js/validate.js"></script>
 
         <form action="signIn.php" onsubmit="return validateInput()" method="post">
             <div class="modal-dialog">
