@@ -2,21 +2,24 @@
 include 'connectionString.php';
 $conn = new mysqli("localhost", $usernameDB, $passwordDB, $database);
 if($conn -> connect_error) { die("Connection failed: " . $conn->connect_error);}
-$query = "SELECT `ProductName`,`Cost`,`Quantity`, `ProductID` FROM `Dairy`";
+$query = "SELECT `ProductName`,`Cost`,`Quantity`, `ProductID`, `DepartmentID` FROM `Product`";
 $result = $conn->query($query);
 if($result->num_rows > 0)
 {
   while($row = $result->fetch_assoc()) {
-    echo "<div class='itemInfo'>
-    <h5 class='productId' id=" . $row["ProductID"] .">" . $row["ProductName"] . "</h5>
-    Cost:<p id='cost'>" . $row["Cost"] . "</p>
-    Quantity: <p id='quantity'>" . $row["Quantity"] . "</p>
-    <button value=" . $row["Cost"] . " type='button' class='btn btn-success buyButtonDairy'>Buy</button>
-    </div>";
+    if($row["DepartmentID"] >= 3000 && $row["DepartmentID"] < 4000 )
+    {
+      echo "<div class='itemInfo'>
+      <h5 class='productId' id=" . $row["ProductID"] .">" . $row["ProductName"] . "</h5>
+      Cost:<p id='cost'>" . $row["Cost"] . "</p>
+      Quantity: <p id='quantity'>" . $row["Quantity"] . "</p>
+      <button value=" . $row["Cost"] . " type='button' class='btn btn-success buyButtonMeat'>Buy</button>
+      </div>";
+    }
   }
 }
 else {
-  echo "Fail: You are not logged in due to incorrect username or password.";
+  echo "Errors loading the products.";
 }
 $conn->close();
 ?>
