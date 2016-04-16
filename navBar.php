@@ -19,8 +19,8 @@
         <li><a href="shop.php">Shop</a></li>
         <?php
     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
-        echo "<li><a href=\"profile.php\">MY PROFILE</a></li>";
-        echo "<li><a href=\"signOut.php\">LOGOUT</a></li>";
+        echo "<li><a href=\"profile.php\">My Profile</a></li>";
+        echo "<li><a href=\"signOut.php\">Logout</a></li>";
     }
     else {
       include 'showLoginModal.php';

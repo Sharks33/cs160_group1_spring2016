@@ -18,16 +18,16 @@ session_start();
     <body>
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 
-        <?php
-        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
-          $first = $_SESSION['firstName'];
-          $last = $_SESSION['lastName'];
-          echo "<h2 style=\"color: blue\">Welcome to Illegal Drugs Depot, $first $last!</h2>";
-        }
-        ?>
-
         <div class="container">
           <div class="row">
+            <?php
+            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
+              $first = $_SESSION['firstName'];
+              $last = $_SESSION['lastName'];
+              echo "<h2 style=\"color: blue\">Welcome to Illegal Drugs Depot, $first $last!</h2>";
+            }
+            ?>
+            <hr>
               <div id="map"></div>
           </div>
         </div>
