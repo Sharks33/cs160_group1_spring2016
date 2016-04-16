@@ -19,11 +19,6 @@
       <hr>
     </div>
   </div>
-  <div class="container" id="homeIcon">
-    <div class="row">
-    <button type='button' class='btn btn-success' onclick="payNow()"><span class="glyphicon glyphicon-home"></span> Home</button>
-    </div>
-  </div>
   <div class="container" id="itemContainer">
   <div class="row">
   <table class="table table-bordered" id="#shoppingListTable">
