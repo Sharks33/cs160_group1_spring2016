@@ -13,7 +13,7 @@ if($result->num_rows > 0)
       <h5 class='productId' id=" . $row["ProductID"] .">" . $row["ProductName"] . "</h5>
       Cost:<p id='cost'>" . $row["Cost"] . "</p>
       Quantity: <p id='quantity'>" . $row["Quantity"] . "</p>
-      <button value=" . $row["Cost"] . " type='button' class='btn btn-success buyButtonMeat'>Buy</button>
+      <button value=" . $row["Cost"] . " type='button' class='btn btn-success buyButtonDairy'>Buy</button>
       </div>";
     }
   }
