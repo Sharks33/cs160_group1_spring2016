@@ -19,16 +19,17 @@
         <li><a href="shop.php">Shop</a></li>
         <li><a href="orderHistory.php"> Order History </a></li>
         <?php
-    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
-        echo "<li><a href=\"profile.php\">My Profile</a></li>";
-        echo "<li><a href=\"signOut.php\">Logout</a></li>";
-    }
-    else {
-      include 'showLoginModal.php';
-      echo '<li><a href="index.php">Register</a></li>';
-      echo '<li><a href="#" data-toggle="modal" data-target="#login-modal">Sign In</a></li>';
-    }
-    ?>
+          if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
+            echo "<li><a href=\"profile.php\">My Profile</a></li>";
+            echo "<li><a href=\"signOut.php\">Logout</a></li>";
+          }
+          else {
+            include 'showLoginModal.php';
+            echo '<li><a href="index.php">Register</a></li>';
+            echo '<li><a href="#" data-toggle="modal" data-target="#login-modal">Sign In</a></li>';
+          }
+        ?>
+        <li><a href="aboutUs.php">About Us</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->

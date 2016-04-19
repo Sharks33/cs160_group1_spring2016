@@ -14,11 +14,6 @@ session_start();
         height: 400px;
         background-color: #CCC;
       }
-
-      #breadMilkEggs {
-        display: block;
-        margin: 0 auto;
-      }
     </style>
     <body>
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -33,50 +28,9 @@ session_start();
             }
             ?>
             <hr>
-              <!-- <nav id="map"></nav> -->
+              <nav id="map"></nav>
           </div>
         </div>
-
-
-        <p class="text-center" id="breadMilkEggs">
-          <img src="static/img/breakMilkEggs.jpg" alt="Shop" />
-        </p>
-
-
-        <div class="container" id="instruction">
-          <div class="row">
-            <h2 class="text-center"> <u> Top Quality Guarantee</u> </h2>
-            <div class="col-md-4">
-              <p>
-                Register an account and login. Then click on "Shopping"
-              </p>
-              <p class="text-center">
-                <img src="static/img/register.png" alt="Register" />
-              </p>
-            </div>
-            <div class="col-md-4">
-              <p>
-                Select the items you wish to purchase and pay.
-              </p>
-              <!-- <p class="text-center" id="breadMilkEggs"> -->
-                <img src="static/img/breakMilkEggs.jpg" alt="Shop" />
-              <!-- </p> -->
-            </div>
-            <div class="col-md-4">
-              <p>
-                Wait outside for Optimus Prime and pick up your grocery. That easy!
-              </p>
-              <p class="text-center">
-                <img src="static/img/candytruck.jpg" alt="Candy Truck" />
-              </p>
-            </div>
-          </div>
-        </div>
-
-
-
-
-
 
         <!-- Actual Index Page Customization -->
         <div class="container" id="missionStatement">
