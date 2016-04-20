@@ -15,9 +15,25 @@ session_start();
         background-color: #CCC;
       }
 
-      #breadMilkEggs {
+      #quality {
         display: block;
         margin: 0 auto;
+        width: 200px;
+        height: 200px;
+      }
+
+      #produce {
+        /*display: block;
+        margin: 0 auto;*/
+        float: left;
+        width: 470px;
+        height: 300px;
+        margin-right: 20px;
+      }
+
+      img.topQual {
+        width: 370px;
+        height: 300px;
       }
     </style>
     <body>
@@ -38,87 +54,64 @@ session_start();
         </div>
 
 
-        <p class="text-center" id="breadMilkEggs">
-          <img src="static/img/breakMilkEggs.jpg" alt="Shop" />
-        </p>
+        <!-- <p class="text-left">
+          <img src="static/img/top_quality.jpg" alt="Shop" id="breadMilkEggs"/>
+        </p> -->
+        <img src="static/img/top_quality.jpg" alt="Shop" id="quality"/>
 
 
         <div class="container" id="instruction">
           <div class="row">
-            <h2 class="text-center"> <u> Top Quality Guarantee</u> </h2>
-            <div class="col-md-4">
-              <p>
-                Register an account and login. Then click on "Shopping"
-              </p>
-              <p class="text-center">
-                <img src="static/img/register.png" alt="Register" />
-              </p>
-            </div>
-            <div class="col-md-4">
-              <p>
-                Select the items you wish to purchase and pay.
-              </p>
-              <!-- <p class="text-center" id="breadMilkEggs"> -->
-                <img src="static/img/breakMilkEggs.jpg" alt="Shop" />
-              <!-- </p> -->
-            </div>
-            <div class="col-md-4">
-              <p>
-                Wait outside for Optimus Prime and pick up your grocery. That easy!
-              </p>
-              <p class="text-center">
-                <img src="static/img/candytruck.jpg" alt="Candy Truck" />
-              </p>
+            <div>
+              <h3>
+                Produce
+              </h3>
+              <img src="static/img/produce.jpg" alt="Shop" id="produce"/>
+              <h4 class="text-justify">
+                With more than 18 million cases of produce delivered to our customers nationwide
+                every year – no one can question the popularity of our produce. And, because of
+                the importance of our produce to our customers’ businesses, we have developed a
+                sophisticated and comprehensive plan to provide our customers with the best products
+                possible at the best value. All of our produce is grown, inspected, shipped, re-inspected
+                and distributed with the care and professional attention that will bring excellence to your
+                plate. From tomatoes, potatoes, and onions to whole fresh herbs and fresh cut produce,
+                we can cover all your needs, and we can guarantee the freshness and quality of our products
+                time and time again. In fact, we believe so much in our produce that we even give you a
+                quality guarantee – if you aren’t satisfied with the freshness of our produce, call us
+                within 24 hours and we’ll give you a full refund or replacement product. Now THAT is quality.
+              </h4>
             </div>
           </div>
-        </div>
-
-
-
-
-
-
-        <!-- Actual Index Page Customization -->
-        <div class="container" id="missionStatement">
           <div class="row">
-            <h2 class="text-center"> <u>Our Mission</u> </h2>
-            <p>
-              Deliver and provide exceptional high end products at the lowest expense while making it
-              simpler for customers to purchase grocery and get it deliver at the speed of light.
-            </p>
+            <div>
+              <div class="col-md-4">
+                <h3>
+                  BREAD
+                </h3>
+
+                  <img src="static/img/bread.jpg" alt="Bread" class="topQual"/>
+
+              </div>
+              <div class="col-md-4">
+                <h3>
+                  MEAT
+                </h3>
+
+                  <img src="static/img/topQualityMeats.jpg" alt="Meat" class="topQual"/>
+
+              </div>
+              <div class="col-md-4">
+                <h3>
+                  DAIRY
+                </h3>
+
+                  <img src="static/img/topDairy.jpg" alt="Dairy" class="topQual"/>
+
+              </div>
+            </div>
           </div>
-          <hr>
         </div>
 
-        <div class="container" id="instruction">
-          <div class="row">
-            <h2 class="text-center"> <u> How to Use?</u> </h2>
-            <div class="col-md-4">
-              <p>
-                Register an account and login. Then click on "Shopping"
-              </p>
-              <p class="text-center">
-                <img src="static/img/register.png" alt="Register" />
-              </p>
-            </div>
-            <div class="col-md-4">
-              <p>
-                Select the items you wish to purchase and pay.
-              </p>
-              <p class="text-center">
-                <img src="static/img/shopping.jpg" alt="Shop" />
-              </p>
-            </div>
-            <div class="col-md-4">
-              <p>
-                Wait outside for Optimus Prime and pick up your grocery. That easy!
-              </p>
-              <p class="text-center">
-                <img src="static/img/candytruck.jpg" alt="Candy Truck" />
-              </p>
-            </div>
-          </div>
-        </div>
         <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
         <script src="./js/about_maps.js"></script>
         <?php include 'footer.php'; ?>
