@@ -2,6 +2,7 @@
 session_start();
 $cartItems = json_decode($_POST['CartItems'], true);
 $user = trim($_POST['UserName']);
+$creditCard = trim($_POST['creditCard']);
 
 include 'connectionString.php';
 $conn = new mysqli("localhost", $usernameDB, $passwordDB, $database);
@@ -14,6 +15,10 @@ foreach($cartItems as $item)
   $query = "INSERT INTO Purchase (ProductName, Cost, UserName) VALUES ('$productName','$cost', '$user')";
   $conn -> query($query);
 }
+
+$query = "UPDATE Users SET CreditCard='$creditCard' WHERE UserName = '$user'";
+$conn -> query($query);
+$conn->close();
 ?>
 
 <html>
