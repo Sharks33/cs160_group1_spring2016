@@ -8,7 +8,7 @@ session_start();
   <body>
     <?php
     include 'connectionString.php';
-    $user = trim($_SESSION['UserName']);
+    $user = trim($_SESSION['username']);
     $con = mysqli_connect("localhost", $usernameDB, $passwordDB, $database);
     if (mysqli_connect_errno()) { echo "Failed to connect to MySQL: " . mysqli_connect_error(); }
     $query = "SELECT * FROM Purchase WHERE UserName = '$user'";
