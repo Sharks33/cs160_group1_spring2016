@@ -4,7 +4,7 @@
   $totalPrice = $_POST['TotalPrice'];
   $cartItems = json_decode($_POST['CartItems'], true);
   $user = $_POST['UserName'];
-  $_SESSION['UserName'] = $user;
+  $_SESSION['username'] = $user;
 
   echo <<<HEREDOC
   <div class="container">
@@ -32,6 +32,11 @@ HEREDOC;
 
   echo "</table><h3> Total Price: </h3><div class='alert alert-success' role='alert' id='totalPrice'>" . $totalPrice . "</div>";
   echo <<<EOT
+  <div class="form-group">
+  <label for="usr">Enter Credit Card Number:</label>
+  <input type="number" class="form-control" id="creditCardInput"></div>
+EOT;
+  echo <<<EOT
   <button type='button' class='btn btn-success' onclick='payNow()'> Pay Now! </button>
   <button type='button' class='btn btn-danger' onclick='backAndEdit()'> Back To Shop </button>
   </div></div>
@@ -43,8 +48,6 @@ EOT;
       $("#panelColor").removeClass("panel-info").addClass("panel-success");
       $("#panel-title").text("Order has been confirmed!").fadeIn();
       $("#panel-body").text("Thank you. Your groceries have been purchased and your credit card has been processed. Checkout your purchase history to see what groceries you have bought and estimated time of arrival. Have a nice ass day!");
-      $("#homeIcon").fadeIn('slow');
-      $("#itemContainer").fadeOut('slow');
 
       var cartItems = [];
 
@@ -58,15 +61,25 @@ EOT;
       });
 
       var user = $("#userName").text();
-      $.ajax({
-        url: 'processOrder.php',
-        type: 'POST',
-        data: {"CartItems": JSON.stringify(cartItems), "UserName": user},
-        success: function(data)
-        {
-          $("html").html(data);
-        }
-      });
+      var creditCard = document.getElementById("creditCardInput").value;
+
+      if (creditCard != "")
+      {
+        $.ajax({
+          url: 'processOrder.php',
+          type: 'POST',
+          data: {"CartItems": JSON.stringify(cartItems), "UserName": user, "creditCard":creditCard},
+          success: function(data)
+          {
+            $("html").html(data);
+          }
+        });
+      }
+      else {
+        $("#panelColor").removeClass("panel-info").addClass("panel-danger");
+        $("#panel-title").text("Please enter Credit Card Number!");
+        $("#panel-body").text("In order to process your order, we need your Credit Card Number in order to pay for your groceries :)");
+      }
     }
 
     function backAndEdit()
