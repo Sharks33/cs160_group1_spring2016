@@ -103,7 +103,7 @@ function initMap() {
     // taken from https://developers.google.com/maps/documentation/javascript/examples/map-geolocation
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
-            var user_pos = {
+            user_pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
