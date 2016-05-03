@@ -118,16 +118,19 @@ function initMap() {
         // Browser doesn't support Geolocation
         handleLocationError(false, infoWindow, map.getCenter());
     }
-    
+
     // directions assume that we're delivering to the current location of the user 
-    // -- change user_pos to address if needed
-    
+    // -- change user_pos to geocoordinates if needed
+
     // TEMP POS VAR -- REMOVE WHEN DONE
-    user_pos = { lat: 37.3449125, lng: -121.8561276 };
+    user_pos = {
+        lat: 37.3449125,
+        lng: -121.8561276
+    };
     // calculate nearest warehouse
-    
+    var nearest_store_location = nearestStore(user_pos);
     // draw route
-    
+    calculateAndDisplayRoute(directionsService, directionsDisplay, user_pos, nearest_store_location);
 }
 
 // item only refers to type formats specificied like var store
@@ -153,20 +156,42 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         'Error: Your browser doesn\'t support geolocation.');
 }
 
-function nearestWarehouse(destination){
-    // stub
+// return the position of closest store
+// dest should be a { lat: _, lng: _ } object
+function nearestStore(destination) {
+    // local array of all calculated distances from destination to stores
+    var closestStoreIndex = 0;
+    var dists = [];
+    for (i in stores) {
+        dist[i] = calculateDistance(stores[i].location, destination);
+    };
+    for (i in dists) {
+        if (dists[i] < dists[closestStoreIndex]) {
+            closestStoreIndex = i;
+        }
+    };
+    return stores[closestStoreIndex].location;
+}
+
+// takes points as { lat: _, lng: _ } objects
+function calculateDistance(p1, p2) {
+    var p1_cast = new google.maps.LatLng(p1.lat, p1.lng);
+    var p2_cast = new google.maps.LatLng(p2.lat, p2.lng);
+    return (google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2);
 }
 
 function calculateAndDisplayRoute(directionsService, directionsDisplay, origin, destination) {
-  directionsService.route({
-    origin: origin,
-    destination: destination,
-    travelMode: google.maps.TravelMode.DRIVING
-  }, function(response, status) {
-    if (status === google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(response);
-    } else {
-      window.alert('Directions request failed due to ' + status);
-    }
-  });
+    var origin_cast = new google.maps.LatLng(origin.lat, origin.lng);
+    var destination_cast = new google.maps.LatLng(destination.lat, destination.lng);
+    directionsService.route({
+        origin: origin_cast,
+        destination: destination_cast,
+        travelMode: google.maps.TravelMode.DRIVING
+    }, function(response, status) {
+        if (status === google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+        } else {
+            window.alert('Directions request failed due to ' + status);
+        }
+    });
 }
