@@ -75,8 +75,10 @@ var stores = [{
 }];
 
 // move out map and markers ref for later
+// move out user_pos ref
 var map = null;
 var markers = [];
+var user_pos = null;
 
 function initMap() {
     var directionsService = new google.maps.DirectionsService;
@@ -101,14 +103,14 @@ function initMap() {
     // taken from https://developers.google.com/maps/documentation/javascript/examples/map-geolocation
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
+            var user_pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
 
-            infoWindow.setPosition(pos);
+            infoWindow.setPosition(user_pos);
             infoWindow.setContent('Location found.');
-            map.setCenter(pos);
+            map.setCenter(user_pos);
         }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
         });
@@ -116,6 +118,16 @@ function initMap() {
         // Browser doesn't support Geolocation
         handleLocationError(false, infoWindow, map.getCenter());
     }
+    
+    // directions assume that we're delivering to the current location of the user 
+    // -- change user_pos to address if needed
+    
+    // TEMP POS VAR -- REMOVE WHEN DONE
+    user_pos = { lat: 37.3449125, lng: -121.8561276 };
+    // calculate nearest warehouse
+    
+    // draw route
+    
 }
 
 // item only refers to type formats specificied like var store
@@ -139,4 +151,22 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setContent(browserHasGeolocation ?
         'Error: The Geolocation service failed.' :
         'Error: Your browser doesn\'t support geolocation.');
+}
+
+function nearestWarehouse(destination){
+    // stub
+}
+
+function calculateAndDisplayRoute(directionsService, directionsDisplay, origin, destination) {
+  directionsService.route({
+    origin: origin,
+    destination: destination,
+    travelMode: google.maps.TravelMode.DRIVING
+  }, function(response, status) {
+    if (status === google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+    } else {
+      window.alert('Directions request failed due to ' + status);
+    }
+  });
 }
