@@ -81,8 +81,8 @@ var markers = [];
 var user_pos = null;
 
 function initMap() {
-    var directionsService = new google.maps.DirectionsService;
-    var directionsDisplay = new google.maps.DirectionsRenderer;
+    var directionsService = new google.maps.DirectionsService();
+    var directionsDisplay = new google.maps.DirectionsRenderer();
     map = new google.maps.Map(document.getElementById('map'), {
         center: {
             lat: 37.3209654,
@@ -162,14 +162,15 @@ function nearestStore(destination) {
     // local array of all calculated distances from destination to stores
     var closestStoreIndex = 0;
     var dists = [];
+    var i = 0;
     for (i in stores) {
         dist[i] = calculateDistance(stores[i].location, destination);
-    };
+    }
     for (i in dists) {
         if (dists[i] < dists[closestStoreIndex]) {
             closestStoreIndex = i;
         }
-    };
+    }
     return stores[closestStoreIndex].location;
 }
 
