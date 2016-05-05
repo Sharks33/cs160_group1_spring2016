@@ -34,7 +34,7 @@ HEREDOC;
   echo <<<EOT
   <div class="form-group">
   <label for="usr">Enter Credit Card Number:</label>
-  <input type="number" class="form-control" id="creditCardInput"></div>
+  <input type="text" min="0" max="99999" maxlength="16" class="form-control" id="creditCardInput"></div>
 EOT;
   echo <<<EOT
   <button type='button' class='btn btn-success' onclick='payNow()'> Pay Now! </button>
@@ -54,16 +54,14 @@ EOT;
       $(".productInfo").each(function()
       {
         var name = $(this).find("td.productName").text();
-        // alert(name);
         var cost = $(this).find("td.cost").text();
-        // alert(cost);
         cartItems.push({"ProductName" : name, "Cost" : cost});
       });
 
       var user = $("#userName").text();
       var creditCard = document.getElementById("creditCardInput").value;
-
-      if (creditCard != "")
+      creditCard = parseInt(creditCard);
+      if (creditCard != "" && !(isNaN(creditCard)))
       {
         $.ajax({
           url: 'processOrder.php',
@@ -78,7 +76,7 @@ EOT;
       else {
         $("#panelColor").removeClass("panel-info").addClass("panel-danger");
         $("#panel-title").text("Please enter Credit Card Number!");
-        $("#panel-body").text("In order to process your order, we need your Credit Card Number in order to pay for your groceries :)");
+        $("#panel-body").text("In order to process your order, we need your Credit Card Number in order to pay for your groceries. Please make sure that it is 16 numbers long and there are no letters from the alphabets. Just numbers. :)");
       }
     }
 
