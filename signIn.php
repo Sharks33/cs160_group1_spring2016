@@ -4,7 +4,7 @@ session_start();
 ob_start();
 if($_POST && !empty($_POST['username']) && !empty($_POST['password'])) {
     $pass = $_POST['password'];
-    $user = new User($_POST['username'], null, null, null, $pass);
+    $user = new User($_POST['username'], null, null, null, $pass, null);
     if ($user->authenticate()) {
         $_SESSION['loggedin'] = true;
         $username = $user->getUsername();

@@ -9,6 +9,7 @@ class User {
 	private $lastName;
 	private $email;
 	private $password;
+	private $creditCard;
 
 	public function __construct($user, $first, $last, $email, $pass, $credit) {
 		$this->username = $user;
