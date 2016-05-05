@@ -100,7 +100,6 @@ EOT;
 
       // Add name and price of product to the shopping cart list table
       function addToList(name, price, category, id, userName) {
-        // alert(name + price + category + id + userName);
         $.ajax({
           url: "update" + category + ".php",
           data: {'ProductId':id, "ProductName":name, "Cost":price },
@@ -109,13 +108,13 @@ EOT;
               $('#sqlState').html(data);
           }
       });
-        cartItems.push({"ProductName":name, "Cost":price, "UserName":userName});
-        // seeCarItems();
-        $("#shoppingListTable").append("<tr><td class='productName'>" + name + "<td><td class='productPrice' value=" + price + ">" + price + "</td></tr>");
+        var date = new Date();
+        var now = date.toString();
+        cartItems.push({"ProductName":name, "Cost":price, "UserName":userName, "Date": now});
+        $("#shoppingListTable").append("<tr><td class='productName'>" + name + "</td><td class='productPrice' value=" + price + ">" + price + "</td><td class='purchaseDate'>" + now + "</td></tr>");
         updateShoppingCart();
       }
 
-      // Triggered whenever an item is added into the shopping cart list table
       function updateShoppingCart()
       {
         var totalPrice = 0;
@@ -123,7 +122,6 @@ EOT;
           var price = parseInt($(this).attr("value"));
           totalPrice += price;
         });
-        // alert(totalPrice);
         $("#totalPrice").text(totalPrice);
       }
 
@@ -131,9 +129,7 @@ EOT;
       {
         var price = $("#totalPrice").text();
         var user = $("#userName").text();
-        // alert(price);
-        if(price == "")
-        {
+        if(price == "") {
           $("#buyingItem").html("<div class='alert alert-danger'> You didn't buy anything</div>");
         }
         else
