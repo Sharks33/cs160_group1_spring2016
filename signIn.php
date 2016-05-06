@@ -4,7 +4,7 @@ session_start();
 ob_start();
 if($_POST && !empty($_POST['username']) && !empty($_POST['password'])) {
     $pass = $_POST['password'];
-    $user = new User($_POST['username'], null, null, null, $pass, null);
+    $user = new User($_POST['username'], null, null, null, $pass);
     if ($user->authenticate()) {
         $_SESSION['loggedin'] = true;
         $username = $user->getUsername();
@@ -16,8 +16,8 @@ if($_POST && !empty($_POST['username']) && !empty($_POST['password'])) {
         $last = $user->getLastName();
         $_SESSION['lastName'] = $last;
         $_SESSION['reshop'] = false;
-        $credit = $user->getCredit();
-        $_SESSION['creditCard'] = $credit;
+        // $credit = $user->getCredit();
+        // $_SESSION['creditCard'] = $credit;
         header("Location: home.php");
         exit();
     }

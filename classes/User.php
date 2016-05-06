@@ -9,15 +9,15 @@ class User {
 	private $lastName;
 	private $email;
 	private $password;
-	private $creditCard;
+	// private $creditCard;
 
-	public function __construct($user, $first, $last, $email, $pass, $credit) {
+	public function __construct($user, $first, $last, $email, $pass) {
 		$this->username = $user;
 		$this->firstName = $first;
 		$this->lastName = $last;
 		$this->email = $email;
 		$this->password = $pass;
-		$this->creditCard = $credit;
+		// $this->creditCard = $credit;
 	}
 
 	public function authenticate() {
