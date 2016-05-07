@@ -15,6 +15,12 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <div class="result">
                 <div class="modal-dialog">
+                  <div class="panel panel-danger errors">
+                    <div class="panel-heading errors">
+                      <h3 class="panel-title errors"> Errors with Login </h3>
+                      </div>
+                      <div class="panel-body errors" id="errorMessage"></div>
+                     </div>
                     <div class="loginmodal-container">
                         <h1>CREATE ACCOUNT</h1><br>
                             <input type="text" name="username" id="username" placeholder="Username">

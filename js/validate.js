@@ -7,7 +7,7 @@ function validate() {
     var uname = document.getElementById("username").value;
 
     if (uname == "") {
-	errors += "Username is required.\n"
+	errors += "<li> Username is required.</li>";
 	    document.getElementById("username").style.background = errorRed;
     }
     else {
@@ -17,7 +17,7 @@ function validate() {
     var fname  = document.getElementById("firstName").value;
     var lname  = document.getElementById("lastName").value;
     if (fname == "" || lname == "") {
-	errors += "First and last names are required.\n";
+	errors += "<li> First and last names are required.</li>";
 	document.getElementById("firstName").style.background = errorRed;
 	document.getElementById("lastName").style.background = errorRed;
     }
@@ -29,7 +29,7 @@ function validate() {
     var email = document.getElementById("email").value;
     var emailRE = /^.+@.+\..{2,4}$/;
     if (!emailRE.test(email)) {
-	errors += "Invalid email address. Example: xxxxx@xxxxx.xxx\n";
+	errors += "<li> Invalid email address. Example: xxxxx@xxxxx.xxx </li>";
 	document.getElementById("email").style.background = errorRed;
     }
     else {
@@ -39,13 +39,13 @@ function validate() {
     var pass = document.getElementById("password").value;
     var passCheck = document.getElementById("passwordCheck").value;
     if (pass == "") {
-	errors += "Password is required.\n";
+	errors += "<li> Password is required. </li>";
 	document.getElementById("password").style.background = errorRed;
     }
     else {
 	document.getElementById("password").style.background = goodGreen;
 	if (pass !== passCheck) {
-	    errors += "Passwords do not match.\n";
+	    errors += "<li> Passwords do not match. </li>";
 	    document.getElementById("passwordCheck").style.background = errorRed;
 	}
 	else {
@@ -54,10 +54,31 @@ function validate() {
     }
 
     if (errors) {
-	     alert(errors);
+	     $(".errors").fadeIn();
+      $("#errorMessage").html("<ul>" + errors + "</ul>");
 	    return false;
     }
     else {
-      registerDone();
+        var userName = $("#username").val();
+        var firstName = $("#firstName").val();
+        var lastName = $("#lastName").val();
+        var email = $("#email").val();
+        var pass = $("#password").val();
+        $.ajax({
+       url: 'register.php', //This is the current doc
+       type: "POST",
+       data: ({'username': userName,
+          'firstName': firstName,
+          'lastName': lastName,
+          'email': email,
+          'password': pass
+        }),
+       success: function(data){
+           $(".result").html(data);
+         },
+        error: function(req, status, error) {
+            window.alert( req + "\n" + status + "\n" + error );
+        }
+        });
     }
 }
