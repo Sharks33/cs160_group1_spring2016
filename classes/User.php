@@ -75,9 +75,9 @@ class User {
 		return $this->email;
 	}
 
-	public function getCredit() {
-		return $this->creditCard;
-	}
+	// public function getCredit() {
+	// 	return $this->creditCard;
+	// }
 
 	public function setUsername($username) {
 		$this->username = $username;
@@ -95,10 +95,10 @@ class User {
 		$this->email = $email;
 	}
 
-	public function setCredit($credit)
-	{
-		$this->creditCard = $credit;
-	}
+	// public function setCredit($credit)
+	// {
+	// 	$this->creditCard = $credit;
+	// }
 }
 
 ?>

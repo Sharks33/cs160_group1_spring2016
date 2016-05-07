@@ -54,8 +54,10 @@ function validate() {
     }
 
     if (errors) {
-	alert(errors);
-	return false;
+	     alert(errors);
+	    return false;
+    }
+    else {
+      registerDone();
     }
 }
-

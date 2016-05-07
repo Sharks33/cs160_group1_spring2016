@@ -21,6 +21,9 @@ if($_POST && !empty($_POST['username']) && !empty($_POST['password'])) {
         header("Location: home.php");
         exit();
     }
+    else {
+
+    }
 }
 ob_end_flush();
 ?>

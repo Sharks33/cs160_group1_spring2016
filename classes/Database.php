@@ -46,7 +46,6 @@ class Database {
 		$newEmail = $user->getEmail();
 		$newPass = $user->getPassword();
 
-
 		$query = "INSERT INTO Users
 				  VALUES (:username, :firstName, :lastName, :email, :password);";
 
