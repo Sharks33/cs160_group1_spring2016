@@ -81,8 +81,8 @@ var markers = [];
 var user_pos = null;
 
 function initMap() {
-    var directionsService = new google.maps.DirectionsService;
-    var directionsDisplay = new google.maps.DirectionsRenderer;
+    var directionsService = new google.maps.DirectionsService();
+    var directionsDisplay = new google.maps.DirectionsRenderer();
     map = new google.maps.Map(document.getElementById('map'), {
         center: {
             lat: 37.3209654,
@@ -100,29 +100,6 @@ function initMap() {
         addMarker(stores[i]);
     }
 
-    // taken from https://developers.google.com/maps/documentation/javascript/examples/map-geolocation
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            user_pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
-
-            infoWindow.setPosition(user_pos);
-            infoWindow.setContent('Location found.');
-            map.setCenter(user_pos);
-        }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-        });
-    } else {
-        // Browser doesn't support Geolocation
-        handleLocationError(false, infoWindow, map.getCenter());
-    }
-
-    // directions assume that we're delivering to the current location of the user 
-    // -- change user_pos to geocoordinates if needed
-
-    // TEMP POS VAR -- REMOVE WHEN DONE
     user_pos = {
         lat: 37.3449125,
         lng: -121.8561276
@@ -149,27 +126,21 @@ function addMarker(item) {
     markers.push(marker);
 }
 
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-    infoWindow.setPosition(pos);
-    infoWindow.setContent(browserHasGeolocation ?
-        'Error: The Geolocation service failed.' :
-        'Error: Your browser doesn\'t support geolocation.');
-}
-
 // return the position of closest store
 // dest should be a { lat: _, lng: _ } object
 function nearestStore(destination) {
     // local array of all calculated distances from destination to stores
     var closestStoreIndex = 0;
     var dists = [];
+    var i = 0;
     for (i in stores) {
         dist[i] = calculateDistance(stores[i].location, destination);
-    };
+    }
     for (i in dists) {
         if (dists[i] < dists[closestStoreIndex]) {
             closestStoreIndex = i;
         }
-    };
+    }
     return stores[closestStoreIndex].location;
 }
 
