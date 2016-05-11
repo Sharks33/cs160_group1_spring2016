@@ -46,7 +46,7 @@ img.sharks {
 
 input {
     -webkit-appearance: textfield;
-    background-color: #666666;
+    background-color:white;
     border-image-source: initial;
     border-image-slice: initial;
     border-image-width: initial;
