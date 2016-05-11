@@ -60,17 +60,17 @@ var stores = [{
     }
 }, {
     name: "Contra Costa County Store 1",
-    address: "3250 Lakeshore Ave, Oakland, CA 94610",
-    location: {
-        lat: 37.934697,
-        lng: -122.325059
-    }
-}, {
-    name: "Contra Costa County Store 2",
-    address: "Fremont Hub Shopping Center, 39324 Argonaut Way, Fremont, CA 94538",
+    address: "12249 San Pablo Ave, Richmond, CA 94805",
     location: {
         lat: 37.978788,
         lng: -122.056874
+    }
+}, {
+    name: "Contra Costa County Store 2",
+    address: "Heritage Square, 1150 Concord Ave, Concord, CA 94520",
+    location: {
+        lat: 37.934697,
+        lng: -122.325059
     }
 }];
 
