@@ -22,20 +22,29 @@
   <div class="container" id="itemContainer">
   <div class="row">
   <table class="table table-bordered" id="#shoppingListTable">
-  <thead><tr><th>Product Name</th><th> Cost </th></tr></thead>
+  <thead><tr><th>Product Name</th><th> Cost </th><th> Date of Purchase </th></tr></thead>
 HEREDOC;
 
   foreach($cartItems as $item)
   {
-    echo "<tr class='productInfo'><td class='productName'>" . $item["ProductName"] . "</td><td class='cost'>" . $item["Cost"] . "</td><tr>";
+    echo "<tr class='productInfo'><td class='productName'>" . $item["ProductName"] . "</td><td class='cost'>" . $item["Cost"] . "</td><td class='date'>" . $item["Date"] . "</td><tr>";
   }
 
   echo "</table><h3> Total Price: </h3><div class='alert alert-success' role='alert' id='totalPrice'>" . $totalPrice . "</div>";
-  echo <<<EOT
-  <div class="form-group">
-  <label for="usr">Enter Credit Card Number:</label>
-  <input type="number" class="form-control" id="creditCardInput"></div>
+
+
+  if (!isset($_SESSION['creditCard']))
+  {
+    echo <<<EOT
+    <div class="form-group">
+    <label for="usr">Enter Credit Card Number:</label>
+    <input type="text" min="0" max="99999" maxlength="16" class="form-control" id="creditCardInput"></div>
 EOT;
+  }
+  else {
+    echo "<div class='form-group'><label for='usr'>Enter Credit Card Number:</label>";
+    echo "<input type='text' min='0' max='99999' maxlength='16' class='form-control' id='creditCardInput' value=" . $_SESSION['creditCard'] . "></input></div>";
+  }
   echo <<<EOT
   <button type='button' class='btn btn-success' onclick='payNow()'> Pay Now! </button>
   <button type='button' class='btn btn-danger' onclick='backAndEdit()'> Back To Shop </button>
@@ -54,16 +63,15 @@ EOT;
       $(".productInfo").each(function()
       {
         var name = $(this).find("td.productName").text();
-        // alert(name);
         var cost = $(this).find("td.cost").text();
-        // alert(cost);
-        cartItems.push({"ProductName" : name, "Cost" : cost});
+        var date = $(this).find("td.date").text();
+        cartItems.push({"ProductName" : name, "Cost" : cost, "Date" : date});
       });
 
       var user = $("#userName").text();
       var creditCard = document.getElementById("creditCardInput").value;
-
-      if (creditCard != "")
+      creditCard = parseInt(creditCard);
+      if (creditCard != "" && !(isNaN(creditCard)))
       {
         $.ajax({
           url: 'processOrder.php',
@@ -78,7 +86,7 @@ EOT;
       else {
         $("#panelColor").removeClass("panel-info").addClass("panel-danger");
         $("#panel-title").text("Please enter Credit Card Number!");
-        $("#panel-body").text("In order to process your order, we need your Credit Card Number in order to pay for your groceries :)");
+        $("#panel-body").text("In order to process your order, we need your Credit Card Number in order to pay for your groceries. Please make sure that it is 16 numbers long and there are no letters from the alphabets. Just numbers. :)");
       }
     }
 

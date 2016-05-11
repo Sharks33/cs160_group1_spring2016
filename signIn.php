@@ -16,8 +16,13 @@ if($_POST && !empty($_POST['username']) && !empty($_POST['password'])) {
         $last = $user->getLastName();
         $_SESSION['lastName'] = $last;
         $_SESSION['reshop'] = false;
+        // $credit = $user->getCredit();
+        // $_SESSION['creditCard'] = $credit;
         header("Location: home.php");
         exit();
+    }
+    else {
+
     }
 }
 ob_end_flush();

@@ -9,6 +9,7 @@ class User {
 	private $lastName;
 	private $email;
 	private $password;
+	// private $creditCard;
 
 	public function __construct($user, $first, $last, $email, $pass) {
 		$this->username = $user;
@@ -16,6 +17,7 @@ class User {
 		$this->lastName = $last;
 		$this->email = $email;
 		$this->password = $pass;
+		// $this->creditCard = $credit;
 	}
 
 	public function authenticate() {
@@ -73,6 +75,10 @@ class User {
 		return $this->email;
 	}
 
+	// public function getCredit() {
+	// 	return $this->creditCard;
+	// }
+
 	public function setUsername($username) {
 		$this->username = $username;
 	}
@@ -88,6 +94,11 @@ class User {
 	public function setEmail($email) {
 		$this->email = $email;
 	}
+
+	// public function setCredit($credit)
+	// {
+	// 	$this->creditCard = $credit;
+	// }
 }
 
 ?>

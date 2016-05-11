@@ -19,9 +19,9 @@ session_start();
       <div class="row">
 EOT;
     echo "<h2>" . $_SESSION['firstName'] . "'s Order History </h2><table class='table table-bordered'>";
-    echo "<tr><th>Product Name </th><th> Cost </th></tr>";
+    echo "<tr><th>Product Name </th><th> Cost </th><th> Purchase Date </th></tr>";
     while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
-        echo "<tr><td>".$row["ProductName"]."</td><td>".$row["Cost"]."</td></tr>";
+        echo "<tr><td>".$row["ProductName"]."</td><td>".$row["Cost"]."</td><td>".$row["Date"]."</tr>";
     }
     echo "</table></div></div>"
     ?>

@@ -18,6 +18,9 @@
         <li><a href="home.php">Home</a></li>
         <li><a href="shop.php">Shop</a></li>
         <?php
+          if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == 'admin') {
+            echo "<li><a href=\"adminEdit.php\">Admin Edit</a></li>";
+          }
           if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
             echo "<li><a href=\"orderHistory.php\"> Order History </a></li>";
             echo "<li><a href=\"profile.php\">My Profile</a></li>";
