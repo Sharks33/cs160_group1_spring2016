@@ -2,10 +2,9 @@
 <html lang="en">
 
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <link rel=stylesheet href="style.css">
+    <meta content="initial-scale=1.0, user-scalable=no" />
+    <meta charset="utf-8">
     <title>Google Maps Tracking</title>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8K3fPftUM4lvEcd4YMl6ilBC4LNnqAVA&callback=initMap&libraries=geometry,places" async defer></script>
     <style>
         html,
         body {
@@ -68,10 +67,9 @@
 
 <body>
     <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-    <div id="map">
-        <!-- relevant script -->
-        <script src="./js/tracking_maps.js"></script>
-    </div>
+    <div id="map"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8K3fPftUM4lvEcd4YMl6ilBC4LNnqAVA&callback=initMap&libraries=geometry,places" async defer></script>
+    <script src="./js/tracking.js"></script>
 </body>
 
 </html>
