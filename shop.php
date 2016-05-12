@@ -87,6 +87,7 @@ EOT;
 
 <script type="text/javascript">
       var cartItems = [];
+      var userName = "";
 
       $(document).ready(function(){
           var products = ['Meat', 'Produce', 'Dairy'];
@@ -100,6 +101,7 @@ EOT;
 
       // Add name and price of product to the shopping cart list table
       function addToList(name, price, category, id, userName) {
+        userName = userName;
         $.ajax({
           url: "update" + category + ".php",
           data: {'ProductId':id, "ProductName":name, "Cost":price },
@@ -110,8 +112,7 @@ EOT;
       });
         var date = new Date();
         var now = date.toString();
-        cartItems.push({"ProductName":name, "Cost":price, "UserName":userName, "Date": now});
-        $("#shoppingListTable").append("<tr><td class='productName'>" + name + "</td><td class='productPrice' value=" + price + ">" + price + "</td><td class='purchaseDate'>" + now + "</td></tr>");
+        $("#shoppingListTable").append("<tr><td class='productName'>" + name + "</td><td class='productPrice' value=" + price + ">" + price + "</td><td class='purchaseDate'>" + now + "<span class='close' aria-hidden='true'>&times;</span></td></tr>");
         updateShoppingCart();
       }
 
@@ -134,6 +135,14 @@ EOT;
         }
         else
         {
+          $('.productName').each(function() {
+              var price = $(this).next().text();
+              var name = $(this).text();
+              var date = $(this).next().next().text();
+              date = date.substring(0, date.length - 1);
+              cartItems.push({"ProductName":name, "Cost":price, "UserName":userName, "Date": date});
+          });
+
           $.ajax({
                url: 'confirm.php',
                type: "POST",
@@ -170,4 +179,9 @@ EOT;
           console.log("UserName: " + cartItems[i]["UserName"]);
         }
       }
+
+      $(document).on('click','.close', function () {
+          $(this).parent().parent().remove();
+          updateShoppingCart();
+      });
 </script>

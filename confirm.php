@@ -27,11 +27,12 @@ HEREDOC;
 
   foreach($cartItems as $item)
   {
-    echo "<tr class='productInfo'><td class='productName'>" . $item["ProductName"] . "</td><td class='cost'>" . $item["Cost"] . "</td><td class='date'>" . $item["Date"] . "</td><tr>";
+    echo "<tr class='productInfo'><td class='productName'>" .
+    $item["ProductName"] . "</td><td class='cost'>" . $item["Cost"] .
+     "</td><td class='date'>" . $item["Date"] . "</td><tr>";
   }
 
   echo "</table><h3> Total Price: </h3><div class='alert alert-success' role='alert' id='totalPrice'>" . $totalPrice . "</div>";
-
 
   if (!isset($_SESSION['creditCard']))
   {
