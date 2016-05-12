@@ -1,5 +1,5 @@
-// js Gmaps scripts for about.html/php
 // assuming $ works as jquery.min.js should be loaded in whatever this uses
+// TODO: Write event handler for putting in directions
 
 // pre-geocoded
 var stores = [{
@@ -75,10 +75,8 @@ var stores = [{
 }];
 
 // move out map and markers ref for later
-// move out user_pos ref
 var map = null;
 var markers = [];
-var user_pos = null;
 
 function initMap() {
     var directionsService = new google.maps.DirectionsService();
@@ -94,20 +92,19 @@ function initMap() {
     var infoWindow = new google.maps.InfoWindow({
         map: map
     });
-
     // draw store markers
     for (var i in stores) {
         addMarker(stores[i]);
     }
-
-    user_pos = {
+    // change coordinates to hardset user address
+    var user_address = {
         lat: 37.3449125,
         lng: -121.8561276
     };
     // calculate nearest warehouse
-    var nearest_store_location = nearestStore(user_pos);
+    var nearest_store_location = nearestStore(user_address);
     // draw route
-    calculateAndDisplayRoute(directionsService, directionsDisplay, user_pos, nearest_store_location);
+    calculateAndDisplayRoute(directionsService, directionsDisplay, user_address, nearest_store_location);
 }
 
 // item only refers to type formats specificied like var store
@@ -126,37 +123,11 @@ function addMarker(item) {
     markers.push(marker);
 }
 
-// return the position of closest store
-// dest should be a { lat: _, lng: _ } object
-function nearestStore(destination) {
-    // local array of all calculated distances from destination to stores
-    var closestStoreIndex = 0;
-    var dists = [];
-    var i = 0;
-    for (i in stores) {
-        dist[i] = calculateDistance(stores[i].location, destination);
-    }
-    for (i in dists) {
-        if (dists[i] < dists[closestStoreIndex]) {
-            closestStoreIndex = i;
-        }
-    }
-    return stores[closestStoreIndex].location;
-}
-
-// takes points as { lat: _, lng: _ } objects
-function calculateDistance(p1, p2) {
-    var p1_cast = new google.maps.LatLng(p1.lat, p1.lng);
-    var p2_cast = new google.maps.LatLng(p2.lat, p2.lng);
-    return (google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2);
-}
-
+// takes origin and destination as { lat: _, lng: _ } objects
 function calculateAndDisplayRoute(directionsService, directionsDisplay, origin, destination) {
-    var origin_cast = new google.maps.LatLng(origin.lat, origin.lng);
-    var destination_cast = new google.maps.LatLng(destination.lat, destination.lng);
     directionsService.route({
-        origin: origin_cast,
-        destination: destination_cast,
+        origin: origin,
+        destination: destination,
         travelMode: google.maps.TravelMode.DRIVING
     }, function(response, status) {
         if (status === google.maps.DirectionsStatus.OK) {
@@ -165,4 +136,28 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, origin, 
             window.alert('Directions request failed due to ' + status);
         }
     });
+}
+
+function calculateDistance(p1, p2) {
+    var p1_cast = new google.maps.LatLng(p1.lat, p1.lng);
+    var p2_cast = new google.maps.LatLng(p2.lat, p2.lng);
+    return (google.maps.geometry.spherical.computeDistanceBetween(p1_cast, p2_cast) / 1000).toFixed(2);
+}
+
+// return the position of closest store
+// dest should be a { lat: _, lng: _ } object
+function nearestStore(destination) {
+    // local array of all calculated distances from destination to stores
+    console.log("Do I go here");
+    var closestStoreIndex = 0;
+    var dists = [];
+    for (var i in stores) {
+        dists[i] = calculateDistance(stores[i].location, destination);
+    }
+    for (var i in dists) {
+        if (dists[i] < dists[closestStoreIndex]) {
+            closestStoreIndex = i;
+        }
+    }
+    return stores[closestStoreIndex].location;
 }
