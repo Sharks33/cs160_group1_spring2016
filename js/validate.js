@@ -87,7 +87,7 @@ function validate() {
           'email': email,
           'password': pass,
           'zip' : zip,
-          'address': address,
+          'address': address
         }),
        success: function(data){
            $(".result").html(data);
