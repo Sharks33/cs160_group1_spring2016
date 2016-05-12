@@ -58,19 +58,19 @@ var stores = [{
         lat: 37.543505,
         lng: -121.986248
     }
-} , {
-    name: "Contra Costa County Store 1",
-    address: "3250 Lakeshore Ave, Oakland, CA 94610",
-    location: {
-        lat: 37.934697,
-        lng: -122.325059
-    }
 }, {
-    name: "Contra Costa County Store 2",
-    address: "Fremont Hub Shopping Center, 39324 Argonaut Way, Fremont, CA 94538",
+    name: "Contra Costa County Store 1",
+    address: "12249 San Pablo Ave, Richmond, CA 94805",
     location: {
         lat: 37.978788,
         lng: -122.056874
+    }
+}, {
+    name: "Contra Costa County Store 2",
+    address: "Heritage Square, 1150 Concord Ave, Concord, CA 94520",
+    location: {
+        lat: 37.934697,
+        lng: -122.325059
     }
 }];
 
@@ -89,12 +89,12 @@ function initMap() {
     var infoWindow = new google.maps.InfoWindow({
         map: map
     });
-    
+
     // draw store markers
     for (var i in stores) {
         addMarker(stores[i]);
     }
-    
+
     // taken from https://developers.google.com/maps/documentation/javascript/examples/map-geolocation
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -118,9 +118,9 @@ function initMap() {
 // item only refers to type formats specificied like var store
 function addMarker(item) {
     var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(item.location.lat, item.location.lng),
-            map: map,
-        });
+        position: new google.maps.LatLng(item.location.lat, item.location.lng),
+        map: map,
+    });
     var contentString = "<div>" + item.name + "<br/>" + item.address + "<br/>" + item.location.lat + ", " + item.location.lng;
     marker.addListener('click', function() {
         var infowindow = new google.maps.InfoWindow({
