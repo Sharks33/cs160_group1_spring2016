@@ -34,41 +34,42 @@ HEREDOC;
 
   echo "</table><h3> Total Price: </h3><div class='alert alert-success' role='alert' id='totalPrice'>" . $totalPrice . "</div>";
 
-  if (!isset($_SESSION['creditCard']))
+  echo <<<EOT
+  <div class='form-group'>
+  <label for="payment">Payment type</label>
+  <select class="form-control" name="payment" id="payment">
+  <option>-</option>
+  <option>Visa</option>
+  <option>MasterCard</option>
+  <option>Discover</option>
+  </select>
+  <label for="card_number">Card Number:</label>
+EOT;
+
+  if (isset($_SESSION['creditCard']))
   {
-    echo <<<EOT
-    <div class="form-group">
-    <label for="usr">Enter Credit Card Number:</label>
-    <input type="text" min="0" max="99999" maxlength="16" class="form-control" id="creditCardInput"></div>
-EOT;
+    echo "<input type='text' min='0' max='99999' maxlength='16' class='form-control' id='creditCardInput' value=" . $_SESSION['creditCard'] . "></input>";
   }
-  else {
-    echo <<<EOT
-    <div class='form-group'>
-    <label for="payment">Payment type</label>
-    <select class="form-control" name="payment" id="payment">
-    <option>-</option>
-    <option>Visa</option>
-    <option>MasterCard</option>
-    <option>Discover</option>
-    </select>
-    <label for="card_number">Card Number:</label>
-EOT;
-echo "<input type='text' min='0' max='99999' maxlength='16' class='form-control' id='creditCardInput' value=" . $_SESSION['creditCard'] . "></input>";
-if(isset($_SESSION['expiration']))
-{
+  else
+  {
+    echo "<input type='text' min='0' max='99999' maxlength='16' class='form-control' id='creditCardInput'></input>";
+  }
+
+  if(isset($_SESSION['expiration']))
+  {
   echo "<label for='card_expire'>Expiration Date (mmyy):</label><input type='text' name='card_expire' class='form-control' id='card_expire' min='0' max='9999' maxlength='4' placeholder='MMYY' value=" . $_SESSION['expiration'] . " pattern='[0-9]{4}' required ></div>";
-}
-else {
+  }
+  else
+  {
   echo "<label for='card_expire'>Expiration Date (mmyy):</label><input type='text' name='card_expire' class='form-control' id='card_expire' min='0' max='9999' maxlength='4' placeholder='MMYY' pattern='[0-9]{4}' required ></div>";
-}
+  }
+
 echo <<<EOT
 <label for="button">Options:</label>
 <button name='button' type='button' class='btn btn-success' onclick='payNow()'> Pay Now! </button>
 <button name='button' type='button' class='btn btn-danger' onclick='backAndEdit()'> Back To Shop </button>
 </div></div>
 EOT;
-  }
 ?>
 <script type="text/javascript">
     function payNow()
