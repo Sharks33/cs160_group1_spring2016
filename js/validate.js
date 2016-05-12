@@ -36,6 +36,18 @@ function validate() {
 	document.getElementById("email").style.background = goodGreen;
     }
 
+    if ($("#address").val() == "")
+    {
+      errors += "<li> Address is required. </li>";
+      $("#address").css("background-color",errorRed);
+    }
+
+    if ($("#zip").val() == "")
+    {
+      errors += "<li> Zip Code is required. </li>";
+      $("#zip").css("background-color",errorRed);
+    }
+
     var pass = document.getElementById("password").value;
     var passCheck = document.getElementById("passwordCheck").value;
     if (pass == "") {
@@ -64,6 +76,8 @@ function validate() {
         var lastName = $("#lastName").val();
         var email = $("#email").val();
         var pass = $("#password").val();
+        var address = $("#address").val();
+        var zip = $("#zip").val();
         $.ajax({
        url: 'register.php', //This is the current doc
        type: "POST",
@@ -71,7 +85,9 @@ function validate() {
           'firstName': firstName,
           'lastName': lastName,
           'email': email,
-          'password': pass
+          'password': pass,
+          'zip' : zip,
+          'address': address,
         }),
        success: function(data){
            $(".result").html(data);

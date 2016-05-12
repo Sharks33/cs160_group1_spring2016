@@ -44,20 +44,6 @@ img.sharks {
     background-color: #343C45;
 }
 
-input {
-    -webkit-appearance: textfield;
-    background-color:white;
-    border-image-source: initial;
-    border-image-slice: initial;
-    border-image-width: initial;
-    border-image-outset: initial;
-    border-image-repeat: initial;
-    -webkit-rtl-ordering: logical;
-    -webkit-user-select: text;
-    cursor: auto;
-    padding: 3px;
-    border: 0.5px inset;
-}
 
 #footer {
     width:100%;
@@ -65,12 +51,6 @@ input {
     position:relative;
     bottom:0;
     left:0;
-}
-
-#missionStatement {
-}
-
-#instruction {
 }
 
 .itemInfo {
@@ -81,4 +61,36 @@ input {
 
 #homeIcon {
   display:none;
+}
+
+input[type="text"]::-webkit-input-placeholder {
+   color:black;
+}
+
+input[type="text"]:-moz-placeholder { /* Firefox 18- */
+   color:black;
+}
+
+input[type="text"]::-moz-placeholder {  /* Firefox 19+ */
+   color:black;
+}
+
+input[type="text"]:-ms-input-placeholder {
+   color:black;
+}
+
+input[type="password"]:-ms-input-placeholder {
+   color:black;
+}
+
+input[type="password"]:-moz-placeholder { /* Firefox 18- */
+   color:black;
+}
+
+input[type="password"]::-moz-placeholder {  /* Firefox 19+ */
+   color:black;
+}
+
+input[type="password"]::-webkit-input-placeholder {
+   color:black;
 }
