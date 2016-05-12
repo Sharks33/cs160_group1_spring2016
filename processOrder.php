@@ -4,6 +4,9 @@ $cartItems = json_decode($_POST['CartItems'], true);
 $user = trim($_POST['UserName']);
 $creditCard = trim($_POST['creditCard']);
 $_SESSION['creditCard'] = $creditCard;
+$payment = $_POST['payment'];
+$expiration = $_POST['expiration'];
+$_SESSION['expiration'] = $expiration;
 
 include 'connectionString.php';
 $conn = new mysqli("localhost", $usernameDB, $passwordDB, $database);
@@ -14,7 +17,7 @@ foreach($cartItems as $item)
   $productName = trim($item["ProductName"]);
   $cost = trim($item["Cost"]);
   $date = trim($item["Date"]);
-  $query = "INSERT INTO Purchase (ProductName, Cost, UserName, Date) VALUES ('$productName','$cost', '$user', '$date')";
+  $query = "INSERT INTO Purchase (ProductName, Cost, UserName, Date, payment, expiration) VALUES ('$productName','$cost', '$user', '$date', '$payment', '$expiration')";
   $conn -> query($query);
 }
 
