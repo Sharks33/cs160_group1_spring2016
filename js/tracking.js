@@ -74,9 +74,9 @@ var stores = [{
     }
 }];
 
-// move out map and markers ref for later
-var map = null;
-var markers = [];
+// move out map and store_markers ref for later
+var map;
+var store_markers = [];
 
 function initMap() {
     var directionsService = new google.maps.DirectionsService();
@@ -92,14 +92,70 @@ function initMap() {
     var infoWindow = new google.maps.InfoWindow({
         map: map
     });
+
+    // Create the search box and link it to the UI element.
+    var input = document.getElementById('pac-input');
+    var searchBox = new google.maps.places.SearchBox(input);
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+    // Bias the SearchBox results towards current map's viewport.
+    map.addListener('bounds_changed', function() {
+        searchBox.setBounds(map.getBounds());
+    });
+
+    var markers = [];
+    // Listen for the event fired when the user selects a prediction and retrieve
+    // more details for that place.
+    searchBox.addListener('places_changed', function() {
+        var places = searchBox.getPlaces();
+
+        if (places.length == 0) {
+            return;
+        }
+
+        // Clear out the old markers.
+        markers.forEach(function(marker) {
+            marker.setMap(null);
+        });
+        markers = [];
+
+        // For each place, get the icon, name and location.
+        var bounds = new google.maps.LatLngBounds();
+        places.forEach(function(place) {
+            var icon = {
+                url: place.icon,
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(25, 25)
+            };
+
+            // Create a marker for each place.
+            markers.push(new google.maps.Marker({
+                map: map,
+                icon: icon,
+                title: place.name,
+                position: place.geometry.location
+            }));
+
+            if (place.geometry.viewport) {
+                // Only geocodes have viewport.
+                bounds.union(place.geometry.viewport);
+            } else {
+                bounds.extend(place.geometry.location);
+            }
+        });
+        map.fitBounds(bounds);
+    });
+
     // draw store markers
     for (var i in stores) {
         addMarker(stores[i]);
     }
     // change coordinates to hardset user address
     var user_address = {
-        lat: 37.3449125,
-        lng: -121.8561276
+        lat: 37.3352,
+        lng: -121.8811
     };
     // calculate nearest warehouse
     var nearest_store_location = nearestStore(user_address);
@@ -120,7 +176,7 @@ function addMarker(item) {
         });
         infowindow.open(map, marker);
     });
-    markers.push(marker);
+    store_markers.push(marker);
 }
 
 // takes origin and destination as { lat: _, lng: _ } objects
@@ -148,9 +204,9 @@ function calculateDistance(p1, p2) {
 // dest should be a { lat: _, lng: _ } object
 function nearestStore(destination) {
     // local array of all calculated distances from destination to stores
-    console.log("Do I go here");
     var closestStoreIndex = 0;
     var dists = [];
+    // calculate all distances
     for (var i in stores) {
         dists[i] = calculateDistance(stores[i].location, destination);
     }
