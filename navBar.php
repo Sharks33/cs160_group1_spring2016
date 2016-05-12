@@ -18,10 +18,12 @@
         <li><a href="home.php">Home</a></li>
         <li><a href="shop.php">Shop</a></li>
         <?php
-          if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == 'admin') {
+          if ($_SESSION['loggedin'] == true && $_SESSION['username'] == 'admin') {
             echo "<li><a href=\"adminEdit.php\">Admin Edit</a></li>";
+            echo "<li><a href=\"profile.php\">My Profile</a></li>";
+            echo "<li><a href=\"signOut.php\">Logout</a></li>";
           }
-          if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
+          else if ( $_SESSION['loggedin'] == true && $_SESSION['username'] != 'admin') {
             echo "<li><a href=\"orderHistory.php\"> Order History </a></li>";
             echo "<li><a href=\"profile.php\">My Profile</a></li>";
             echo "<li><a href=\"signOut.php\">Logout</a></li>";

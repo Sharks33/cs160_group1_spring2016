@@ -27,6 +27,9 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
                             <input type="text" name="firstName" id="firstName" placeholder="First Name">
                             <input type="text" name="lastName" id="lastName" placeholder="Last Name">
                             <input type="text" name="email" id="email" placeholder="Email">
+                            <input type="text" name="address" id="address" placeholder="Street address">
+                            <!-- <input type="text" name="apt" id="apt" placeholder="Apt #"> -->
+                            <input type="text" name="zip" id="zip" placeholder="Zip Code">
                             <input type="password" name="password" id="password" placeholder="Password">
                             <input type="password" name="passwordCheck" id="passwordCheck" placeholder="Confirm">
                             <input type="submit" name="login" class="login loginmodal-submit" onclick="validate()" value="Create">
@@ -39,31 +42,5 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
             </form>
         </div>
     </body>
-    <script type="text/javascript">
-      function registerDone() {
-        var userName = $("#username").val();
-        var firstName = $("#firstName").val();
-        var lastName = $("#lastName").val();
-        var email = $("#email").val();
-        var pass = $("#password").val();
-        $.ajax({
-       url: 'register.php', //This is the current doc
-       type: "POST",
-       data: ({'username': userName,
-          'firstName': firstName,
-          'lastName': lastName,
-          'email': email,
-          'password': pass
-        }),
-       success: function(data){
-           $(".form").fadeOut();
-           $(".result").html(data);
-         },
-        error: function(req, status, error) {
-            window.alert( req + "\n" + status + "\n" + error );
-        }
-        });
-      }
-    </script>
     <script src="js/validate.js"></script>
 </html>
