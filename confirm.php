@@ -54,10 +54,6 @@ EOT;
 <script type="text/javascript">
     function payNow()
     {
-      $("#panelColor").removeClass("panel-info").addClass("panel-success");
-      $("#panel-title").text("Order has been confirmed!").fadeIn();
-      $("#panel-body").text("Thank you. Your groceries have been purchased and your credit card has been processed. Checkout your purchase history to see what groceries you have bought and estimated time of arrival. Have a nice ass day!");
-
       var cartItems = [];
 
       $(".productInfo").each(function()
