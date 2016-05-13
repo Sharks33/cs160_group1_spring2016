@@ -1,6 +1,14 @@
 <?php
 header('Content-Type: text/html');
 
+// set connection
+include 'connectionString.php';
+$conn = new mysqli("localhost", $usernameDB, $passwordDB, $database);
+if($conn -> connect_error){
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// check if parameter PurchaseID is passed in 
 if (isset($_GET['PurchaseID'])) {
     // method stub
 } else {
