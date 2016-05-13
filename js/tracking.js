@@ -76,12 +76,19 @@ var stores = [{
 
 // move out refs for later
 var geocoder;
+var DirectionsService;
+var DirectionsDisplay;
 var map;
+// kill me already
+var user_address;
+var user_address_g;
+var date;
 var store_markers = [];
 
 function initMap() {
-    var directionsService = new google.maps.DirectionsService();
-    var directionsDisplay = new google.maps.DirectionsRenderer();
+    geocoder = new google.maps.Geocoder();
+    directionsService = new google.maps.DirectionsService();
+    directionsDisplay = new google.maps.DirectionsRenderer();
     map = new google.maps.Map(document.getElementById('map'), {
         center: {
             lat: 37.3209654,
@@ -100,8 +107,8 @@ function initMap() {
     }
 
     // geocode user_address    
-    var user_address = document.getElementById('address').value;
-    var date = document.getElementById('date').value;
+    user_address = document.getElementById('address').value;
+    date = document.getElementById('date').value;
     if (user_address === "empty") {
         console.log("user_address is not valid or was not found");
     } else {
@@ -155,6 +162,23 @@ function calculateDistance(p1, p2) {
     var p1_cast = new google.maps.LatLng(p1.lat, p1.lng);
     var p2_cast = new google.maps.LatLng(p2.lat, p2.lng);
     return (google.maps.geometry.spherical.computeDistanceBetween(p1_cast, p2_cast) / 1000).toFixed(2);
+}
+
+function codeAddress(address) {
+    geocoder.geocode({
+        'address': address
+    }, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+            });
+            user_address_g = results[0].geometry.location;
+        } else {
+            alert("Geocode was not successful for the following reason: " + status);
+        }
+    });
 }
 
 // return the position of closest store
