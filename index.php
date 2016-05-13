@@ -9,7 +9,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
 <html lang="en">
     <?php include 'header.php'; ?>
     <title>
-        Illegal Drugs Depot
+        Grocery Plus
     </title>
     <body>
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -27,7 +27,8 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
                             <input type="text" name="firstName" id="firstName" placeholder="First Name">
                             <input type="text" name="lastName" id="lastName" placeholder="Last Name">
                             <input type="text" name="email" id="email" placeholder="Email">
-                            <input type="text" name="address" id="address" placeholder="1 Fake Street, San Jose, CA 951112">
+                            <input type="text" name="address" id="address" placeholder="Steet Address, City, State">
+                            <input type="text" name="zip" id="zip" placeholder="Zip Code">
                             <input type="password" name="password" id="password" placeholder="Password">
                             <input type="password" name="passwordCheck" id="passwordCheck" placeholder="Confirm">
                             <input type="submit" name="login" class="login loginmodal-submit" onclick="validate()" value="Create">

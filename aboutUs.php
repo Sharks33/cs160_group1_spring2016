@@ -10,7 +10,7 @@ session_start();
     </title>
     <style>
       #map {
-        width: 500px;
+        width: auto;
         height: 400px;
         background-color: #CCC;
       }
@@ -35,7 +35,7 @@ session_start();
         <!-- Actual Index Page Customization -->
         <div class="container" id="missionStatement">
           <div class="row">
-            <h2 class="text-center"> <u>Our Mission</u> </h2>
+            <h2 class="text-center"> <b>OUR MISSION</b> </h2>
             <p>
               Deliver and provide exceptional high end products at the lowest expense while making it
               simpler for customers to purchase grocery and get it deliver at the speed of light.
@@ -46,7 +46,7 @@ session_start();
 
         <div class="container" id="instruction">
           <div class="row">
-            <h2 class="text-center"> <u> How to Use?</u> </h2>
+            <h2 class="text-center"> <b>HOW TO USE GROCERY PLUS</b> </h2>
             <div class="col-md-4">
               <p>
                 Register an account and login. Then click on "Shopping"

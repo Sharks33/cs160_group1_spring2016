@@ -57,11 +57,11 @@ EOT;
 
   if(isset($_SESSION['expiration']))
   {
-  echo "<label for='card_expire'>Expiration Date (mmyy):</label><input type='text' name='card_expire' class='form-control' id='card_expire' min='0' max='9999' maxlength='4' placeholder='MMYY' value=" . $_SESSION['expiration'] . " pattern='[0-9]{4}' required ></div>";
+  echo "<label for='card_expire'>Expiration Date (mmyy):</label><input type='number' name='card_expire' class='form-control' id='card_expire' min='0' max='9999' maxlength='4' placeholder='MMYY' value=" . $_SESSION['expiration'] . " pattern='[0-9]{4}' required ></div>";
   }
   else
   {
-  echo "<label for='card_expire'>Expiration Date (mmyy):</label><input type='text' name='card_expire' class='form-control' id='card_expire' min='0' max='9999' maxlength='4' placeholder='MMYY' pattern='[0-9]{4}' required ></div>";
+  echo "<label for='card_expire'>Expiration Date (mmyy):</label><input type='number' name='card_expire' class='form-control' id='card_expire' min='0' max='9999' maxlength='4' placeholder='MMYY' pattern='[0-9]{4}' required ></div>";
   }
 
 echo <<<EOT

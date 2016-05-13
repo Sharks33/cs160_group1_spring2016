@@ -4,101 +4,121 @@ require 'classes/Database.php';
 
 class User {
 
-	private $username;
-	private $firstName;
-	private $lastName;
-	private $email;
-	private $password;
-	// private $creditCard;
+    private $username;
+    private $firstName;
+    private $lastName;
+    private $email;
+    private $password;
+    private $address;
+    private $zip;
+    // private $creditCard;
 
-	public function __construct($user, $first, $last, $email, $pass) {
-		$this->username = $user;
-		$this->firstName = $first;
-		$this->lastName = $last;
-		$this->email = $email;
-		$this->password = $pass;
-		// $this->creditCard = $credit;
-	}
+    public function __construct($user, $first, $last, $email, $pass, $address, $zip) {
+        $this->username = $user;
+        $this->firstName = $first;
+        $this->lastName = $last;
+        $this->email = $email;
+        $this->password = $pass;
+        $this->address = $address;
+        $this->zip = $zip;
+        // $this->creditCard = $credit;
+    }
 
-	public function authenticate() {
-		$db = new Database();
-		if ($db != null) {
-			if ($db->checkCredentials($this)) {
-				$db->getUserInfo($this);
-				echo "<h1 style=\"color: green; text-align: center\">Authentication succeeded</h1>";
-				return true;
-			}
-			else {
-				echo "<h1 style=\"color: red; text-align: center\">Authentication failed</h1>";
-				return false;
-			}
-		}
-		else {
-			echo "Database connection failure...";
-			return false;
-		}
-	}
+    public function authenticate() {
+        $db = new Database();
+        if ($db != null) {
+            if ($db->checkCredentials($this)) {
+                $db->getUserInfo($this);
+                echo "<h1 style=\"color: green; text-align: center\">Authentication succeeded</h1>";
+                return true;
+            }
+            else {
+                echo "<h1 style=\"color: red; text-align: center\">Authentication failed</h1>";
+                return false;
+            }
+        }
+        else {
+            echo "Database connection failure...";
+            return false;
+        }
+    }
 
-	public function create() {
-		$db = new Database();
-		if ($db != null) {
-			if ($db->addUser($this)) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		else {
-			echo "Database connection failure...";
-			return false;
-		}
-	}
+    public function create() {
+        $db = new Database();
+        if ($db != null) {
+            if ($db->addUser($this)) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            echo "Database connection failure...";
+            return false;
+        }
+    }
 
-	public function getUsername() {
-		return $this->username;
-	}
+    public function getUsername() {
+        return $this->username;
+    }
 
-	public function getPassword() {
-		return $this->password;
-	}
+    public function getPassword() {
+        return $this->password;
+    }
 
-	public function getFirstName() {
-		return $this->firstName;
-	}
+    public function getFirstName() {
+        return $this->firstName;
+    }
 
-	public function getLastName() {
-		return $this->lastName;
-	}
+    public function getLastName() {
+        return $this->lastName;
+    }
 
-	public function getEmail() {
-		return $this->email;
-	}
+    public function getEmail() {
+        return $this->email;
+    }
 
-	// public function getCredit() {
-	// 	return $this->creditCard;
-	// }
+    public function getAddress() {
+        return $this->address;
+    }
 
-	public function setUsername($username) {
-		$this->username = $username;
-	}
+    public function getZip() {
+        return $this->zip;
+    }
 
-	public function setFirstName($name) {
-		$this->firstName = $name;
-	}
+    // public function getCredit() {
+    //  return $this->creditCard;
+    // }
 
-	public function setLastName($name) {
-		$this->lastName = $name;
-	}
+    public function setUsername($username) {
+        $this->username = $username;
+    }
 
-	public function setEmail($email) {
-		$this->email = $email;
-	}
+    public function setFirstName($name) {
+        $this->firstName = $name;
+    }
 
-	// public function setCredit($credit)
-	// {
-	// 	$this->creditCard = $credit;
-	// }
+    public function setLastName($name) {
+        $this->lastName = $name;
+    }
+
+    public function setEmail($email) {
+        $this->email = $email;
+    }
+
+    public function setAddress($address) {
+        $this->address = $address;
+    }
+
+    public function setZip($zip) {
+        $this->zip = $zip;
+    }
+
+    // public function setCredit($credit)
+    // {
+    //  $this->creditCard = $credit;
+    // }
 }
 
 ?>

@@ -4,17 +4,28 @@ session_start();
 ob_start();
 if($_POST && !empty($_POST['username']) && !empty($_POST['password'])) {
     $pass = $_POST['password'];
-    $user = new User($_POST['username'], null, null, null, $pass);
+    $user = new User($_POST['username'], null, null, null, $pass, null, null);
     if ($user->authenticate()) {
         $_SESSION['loggedin'] = true;
+
         $username = $user->getUsername();
         $_SESSION['username'] = $username;
+
         $email = $user->getEmail();
         $_SESSION['email'] = $email;
+
         $first = $user->getFirstName();
         $_SESSION['firstName'] = $first;
+
         $last = $user->getLastName();
         $_SESSION['lastName'] = $last;
+
+        $address = $user->getAddress();
+        $_SESSION['address'] = $address;
+
+        $zip = $user->getZip();
+        $_SESSION['zip'] = $zip;
+
         $_SESSION['reshop'] = false;
         // $credit = $user->getCredit();
         // $_SESSION['creditCard'] = $credit;
