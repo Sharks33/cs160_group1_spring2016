@@ -9,7 +9,7 @@ if($conn -> connect_error){
 }
 
 // check if parameter PurchaseID is passed in 
-$address = "empty"
+$address = "empty";
 $date = "empty";
 if (isset($_GET['PurchaseID'])) {
     $query = "SELECT `Users.Address` AS `Address`, `Purchase.Date` AS `Date` FROM `Purchase` INNER JOIN `Users` ON `Purchase.UserName` = `Users.UserName` AND `PurchaseID` = " . $_GET['PurchaseID'];

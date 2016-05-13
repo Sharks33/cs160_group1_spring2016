@@ -98,15 +98,26 @@ function initMap() {
     for (var i in stores) {
         addMarker(stores[i]);
     }
+
+    // geocode user_address    
+    var user_address = document.getElementById('address').value;
+    var date = document.getElementById('date').value;
+    if (user_address === "empty") {
+        console.log("user_address is not valid or was not found");
+    } else {
+        // geocode address here
+    }
+
     // change coordinates to hardset user address
-    var user_address = {
-        lat: 37.3352,
-        lng: -121.8811
-    };
+    // var user_address = {
+    //     lat: 37.3352,
+    //     lng: -121.8811
+    // };
+
     // calculate nearest warehouse
-    var nearest_store_location = nearestStore(user_address);
+    var nearest_store_location = nearestStore(user_address_g);
     // draw route
-    calculateAndDisplayRoute(directionsService, directionsDisplay, user_address, nearest_store_location);
+    calculateAndDisplayRoute(directionsService, directionsDisplay, user_address_g, nearest_store_location);
 }
 
 // item only refers to type formats specificied like var store
