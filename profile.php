@@ -14,8 +14,8 @@
                 $first = $_SESSION['firstName'];
                 $last = $_SESSION['lastName'];
                 $email = $_SESSION['email'];
-                 $address = $_SESSION['address'];
-                 $zip = $_SESSION['zip'];
+                $address = $_SESSION['address'];
+                $zip = $_SESSION['zip'];
                 $session_id = $username;
                 echo "<h2> &#160;&#160;&#160; $first $last's Profile Information</h2><br/>";
                 echo "<p>Username: $username<br/>";
