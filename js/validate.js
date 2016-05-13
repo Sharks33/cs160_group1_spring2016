@@ -7,33 +7,33 @@ function validate() {
     var uname = document.getElementById("username").value;
 
     if (uname == "") {
-	errors += "<li> Username is required.</li>";
-	    document.getElementById("username").style.background = errorRed;
+  errors += "<li> Username is required.</li>";
+      document.getElementById("username").style.background = errorRed;
     }
     else {
-	document.getElementById("username").style.background = goodGreen;
+  document.getElementById("username").style.background = goodGreen;
     }
 
     var fname  = document.getElementById("firstName").value;
     var lname  = document.getElementById("lastName").value;
     if (fname == "" || lname == "") {
-	errors += "<li> First and last names are required.</li>";
-	document.getElementById("firstName").style.background = errorRed;
-	document.getElementById("lastName").style.background = errorRed;
+  errors += "<li> First and last names are required.</li>";
+  document.getElementById("firstName").style.background = errorRed;
+  document.getElementById("lastName").style.background = errorRed;
     }
     else {
-	document.getElementById("firstName").style.background = goodGreen;
-	document.getElementById("lastName").style.background = goodGreen;
+  document.getElementById("firstName").style.background = goodGreen;
+  document.getElementById("lastName").style.background = goodGreen;
     }
 
     var email = document.getElementById("email").value;
     var emailRE = /^.+@.+\..{2,4}$/;
     if (!emailRE.test(email)) {
-	errors += "<li> Invalid email address. Example: xxxxx@xxxxx.xxx </li>";
-	document.getElementById("email").style.background = errorRed;
+  errors += "<li> Invalid email address. Example: xxxxx@xxxxx.xxx </li>";
+  document.getElementById("email").style.background = errorRed;
     }
     else {
-	document.getElementById("email").style.background = goodGreen;
+  document.getElementById("email").style.background = goodGreen;
     }
 
     if ($("#address").val() == "")
@@ -45,24 +45,24 @@ function validate() {
     var pass = document.getElementById("password").value;
     var passCheck = document.getElementById("passwordCheck").value;
     if (pass == "") {
-	errors += "<li> Password is required. </li>";
-	document.getElementById("password").style.background = errorRed;
+  errors += "<li> Password is required. </li>";
+  document.getElementById("password").style.background = errorRed;
     }
     else {
-	document.getElementById("password").style.background = goodGreen;
-	if (pass !== passCheck) {
-	    errors += "<li> Passwords do not match. </li>";
-	    document.getElementById("passwordCheck").style.background = errorRed;
-	}
-	else {
-	    document.getElementById("passwordCheck").style.background = goodGreen;
-	}
+  document.getElementById("password").style.background = goodGreen;
+  if (pass !== passCheck) {
+      errors += "<li> Passwords do not match. </li>";
+      document.getElementById("passwordCheck").style.background = errorRed;
+  }
+  else {
+      document.getElementById("passwordCheck").style.background = goodGreen;
+  }
     }
 
     if (errors) {
-	     $(".errors").fadeIn();
+       $(".errors").fadeIn();
       $("#errorMessage").html("<ul>" + errors + "</ul>");
-	    return false;
+      return false;
     }
     else {
         var userName = $("#username").val();
@@ -71,6 +71,7 @@ function validate() {
         var email = $("#email").val();
         var pass = $("#password").val();
         var address = $("#address").val();
+        var zip = $("#zip").val();
         $.ajax({
        url: 'register.php', //This is the current doc
        type: "POST",
@@ -79,7 +80,8 @@ function validate() {
           'lastName': lastName,
           'email': email,
           'password': pass,
-          'address': address
+          'address': address,
+          'zip' : zip
         }),
        success: function(data){
            $(".result").html(data);
