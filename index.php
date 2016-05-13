@@ -27,9 +27,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
                             <input type="text" name="firstName" id="firstName" placeholder="First Name">
                             <input type="text" name="lastName" id="lastName" placeholder="Last Name">
                             <input type="text" name="email" id="email" placeholder="Email">
-                            <input type="text" name="address" id="address" placeholder="Street address">
-                            <!-- <input type="text" name="apt" id="apt" placeholder="Apt #"> -->
-                            <input type="text" name="zip" id="zip" placeholder="Zip Code">
+                            <input type="text" name="address" id="address" placeholder="1 Fake Street, San Jose, CA 951112">
                             <input type="password" name="password" id="password" placeholder="Password">
                             <input type="password" name="passwordCheck" id="passwordCheck" placeholder="Confirm">
                             <input type="submit" name="login" class="login loginmodal-submit" onclick="validate()" value="Create">

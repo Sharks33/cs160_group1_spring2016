@@ -42,12 +42,6 @@ function validate() {
       $("#address").css("background-color",errorRed);
     }
 
-    if ($("#zip").val() == "")
-    {
-      errors += "<li> Zip Code is required. </li>";
-      $("#zip").css("background-color",errorRed);
-    }
-
     var pass = document.getElementById("password").value;
     var passCheck = document.getElementById("passwordCheck").value;
     if (pass == "") {
@@ -77,7 +71,6 @@ function validate() {
         var email = $("#email").val();
         var pass = $("#password").val();
         var address = $("#address").val();
-        var zip = $("#zip").val();
         $.ajax({
        url: 'register.php', //This is the current doc
        type: "POST",
@@ -86,7 +79,6 @@ function validate() {
           'lastName': lastName,
           'email': email,
           'password': pass,
-          'zip' : zip,
           'address': address
         }),
        success: function(data){
