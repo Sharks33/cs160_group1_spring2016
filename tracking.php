@@ -1,3 +1,12 @@
+<?php
+header('Content-Type: text/html');
+
+if (isset($_GET['PurchaseID'])) {
+    // method stub
+} else {
+    echo "No PurchaseID provided.";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,6 +77,7 @@
 <body>
     <input id="pac-input" class="controls" type="text" placeholder="Search Box">
     <div id="map"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8K3fPftUM4lvEcd4YMl6ilBC4LNnqAVA&callback=initMap&libraries=geometry,places" async defer></script>
     <script src="./js/tracking.js"></script>
 </body>
