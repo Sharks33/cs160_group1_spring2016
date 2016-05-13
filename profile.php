@@ -14,14 +14,16 @@
                 $first = $_SESSION['firstName'];
                 $last = $_SESSION['lastName'];
                 $email = $_SESSION['email'];
-                // $address = $_SESSION['address'];
+                 $address = $_SESSION['address'];
+                 $zip = $_SESSION['zip'];
                 $session_id = $username;
                 echo "<h2> &#160;&#160;&#160; $first $last's Profile Information</h2><br/>";
                 echo "<p>Username: $username<br/>";
                 echo "First: $first<br/>";
                 echo "Last: $last<br/>";
                 echo "Email: $email</br>";
-                // echo "Address: $address</p>";
+                echo "Address: $address</br>";
+                echo "Zip Code: $zip</p>";
             }
             else {
                 header("Location: signIn.php");
