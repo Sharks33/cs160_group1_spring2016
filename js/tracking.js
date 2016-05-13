@@ -74,7 +74,8 @@ var stores = [{
     }
 }];
 
-// move out map and store_markers ref for later
+// move out refs for later
+var geocoder;
 var map;
 var store_markers = [];
 

@@ -9,8 +9,13 @@ if($conn -> connect_error){
 }
 
 // check if parameter PurchaseID is passed in 
+$coordx = "empty";
+$coordy = "empty";
+$date = "empty";
 if (isset($_GET['PurchaseID'])) {
-    // method stub
+    $query = "SELECT `Users.Address`, `Purchase.Date` FROM `Purchase` INNER JOIN `Users` ON `Purchase.UserName` = `Users.UserName` AND `PurchaseID` = " . $_GET['PurchaseID'];
+    $result = $conn->query($query);
+    // only one result is expected
 } else {
     echo "No PurchaseID provided.";
 }
