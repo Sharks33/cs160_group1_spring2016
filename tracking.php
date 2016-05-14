@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 header('Content-Type: text/html');
 
@@ -22,7 +23,6 @@ if (isset($_GET['PurchaseID'])) {
     echo "<p>No PurchaseID provided.</p>";
 }
 ?>
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
