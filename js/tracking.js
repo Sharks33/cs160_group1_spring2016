@@ -79,10 +79,6 @@ var geocoder;
 var DirectionsService;
 var DirectionsDisplay;
 var map;
-// kill me already
-var user_address;
-var user_address_g;
-var date;
 var store_markers = [];
 
 function initMap() {
@@ -107,24 +103,14 @@ function initMap() {
     }
 
     // geocode user_address    
-    user_address = document.getElementById('address').value;
+    var user_address = document.getElementById('address').value;
     date = document.getElementById('date').value;
     if (user_address === "empty") {
         console.log("user_address is not valid or was not found");
     } else {
-        // geocode address here
+        // geocode address, find nearest store, draw directions here
+        codeAddressAndDisplayRoute(user_address);
     }
-
-    // change coordinates to hardset user address
-    // var user_address = {
-    //     lat: 37.3352,
-    //     lng: -121.8811
-    // };
-
-    // calculate nearest warehouse
-    var nearest_store_location = nearestStore(user_address_g);
-    // draw route
-    calculateAndDisplayRoute(directionsService, directionsDisplay, user_address_g, nearest_store_location);
 }
 
 // item only refers to type formats specificied like var store
@@ -164,7 +150,8 @@ function calculateDistance(p1, p2) {
     return (google.maps.geometry.spherical.computeDistanceBetween(p1_cast, p2_cast) / 1000).toFixed(2);
 }
 
-function codeAddress(address) {
+// asynchronous call
+function codeAddressAndDisplayRoute(address) {
     geocoder.geocode({
         'address': address
     }, function(results, status) {
@@ -174,7 +161,15 @@ function codeAddress(address) {
                 map: map,
                 position: results[0].geometry.location
             });
-            user_address_g = results[0].geometry.location;
+            user_address_g = {
+                lat: results[0].geometry.location[0],
+                lng: results[0].geometry.location[1]
+            };
+            // find nearest store location
+            var nearest_store_location = nearestStore(user_address_g);
+            // calculate and display route
+            // directionsService and directionsDisplay should be known since refs are moved out to be global
+            calculateAndDisplayRoute(directionsService, directionsDisplay, user_address_g, nearest_store_location);
         } else {
             alert("Geocode was not successful for the following reason: " + status);
         }
