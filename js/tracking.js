@@ -102,7 +102,8 @@ function initMap() {
         addMarker(stores[i]);
     }
 
-    // geocode user_address    
+    // geocode user_address
+    // for temporary purposes you can also hardset user_address for debugging
     var user_address = document.getElementById('address').value;
     date = document.getElementById('date').value;
     if (user_address === "empty") {
