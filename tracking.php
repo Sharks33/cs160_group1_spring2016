@@ -22,10 +22,6 @@ if (isset($_GET['PurchaseID'])) {
         $date = $row["Date"];
       }
     }
-    // only one result is expected
-    // $row = mysqli_fetch_assoc($result);
-    // $address = $row["Address"];
-    // $date = $row["Date"];
 } else {
     echo "<p>No PurchaseID provided.</p>";
 }
