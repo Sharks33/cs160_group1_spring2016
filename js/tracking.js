@@ -204,7 +204,6 @@ function codeAddressAndDisplayRoute(address) {
                 // directionsService and directionsDisplay should be known since refs are moved out to be global
                 calculateAndDisplayRoute(directionsService, directionsDisplay, user_address_g, nearest_store_location);
             } else {
-                console.log(county_name);
                 alert("We are sorry, but we do not service your area");
             }
         } else {
@@ -228,13 +227,14 @@ function nearestStore(destination) {
     var closestStoreIndex = 0;
     var dists = [];
     // calculate all distances
-    for (var i in stores) {
+    var i = 0;
+    for (i in stores) {
         dists[i] = calculateDistance(stores[i].location, destination);
     }
-    i = 0;
-    for (i in dists) {
-        if (dists[i] < dists[closestStoreIndex]) {
-            closestStoreIndex = i;
+    var j = 0;
+    for (j in dists) {
+        if (parseInt(dists[j]) < parseInt(dists[closestStoreIndex])) {
+            closestStoreIndex = j;
         }
     }
     return stores[closestStoreIndex].location;
