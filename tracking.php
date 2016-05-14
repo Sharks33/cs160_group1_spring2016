@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-header('Content-Type: text/html');
+// header('Content-Type: text/html');
 
 // set connection
 include 'connectionString.php';
@@ -9,16 +9,23 @@ if($conn -> connect_error){
     die("Connection failed: " . $conn->connect_error);
 }
 
-// check if parameter PurchaseID is passed in 
+// check if parameter PurchaseID is passed in
 $address = "empty";
 $date = "empty";
 if (isset($_GET['PurchaseID'])) {
     $query = "SELECT `Users.Address` AS `Address`, `Purchase.Date` AS `Date` FROM `Purchase` INNER JOIN `Users` ON `Purchase.UserName` = `Users.UserName` WHERE `Purchase.PurchaseID` = " . $_GET['PurchaseID'];
     $result = $conn->query($query);
+    if(is_object($result) && $result->num_rows > 0)
+    {
+      while($row = $result->fetch_assoc()) {
+        $address = $row["Address"];
+        $date = $row["Date"];
+      }
+    }
     // only one result is expected
-    $row = mysqli_fetch_assoc($result);
-    $address = $row["Address"];
-    $date = $row["Date"];
+    // $row = mysqli_fetch_assoc($result);
+    // $address = $row["Address"];
+    // $date = $row["Date"];
 } else {
     echo "<p>No PurchaseID provided.</p>";
 }
@@ -36,7 +43,7 @@ if (isset($_GET['PurchaseID'])) {
             margin: 0;
             padding: 0;
         }
-        
+
         #map {
             height: 100%;
         }
