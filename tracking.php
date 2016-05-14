@@ -46,8 +46,8 @@ if (isset($_GET['PurchaseID'])) {
 <body>
     <div id="map"></div>
     <!-- only required to be element in DOM so script can retrieve value -->
-    <p id="address" value="$address"></p>
-    <p id="date" value="$date"></p>
+    <input id="address" value="$address"></p>
+    <input id="date" value="$date"></p>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8K3fPftUM4lvEcd4YMl6ilBC4LNnqAVA&callback=initMap&libraries=geometry,places" async defer></script>
     <script src="./js/tracking.js"></script>

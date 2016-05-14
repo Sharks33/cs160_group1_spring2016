@@ -73,11 +73,13 @@ var stores = [{
         lng: -122.325059
     }
 }];
+var service_counties = ["San Francisco County", "San Mateo County", "Santa Clara County", "Alameda County", "Contra Costa County"];
 
 // move out refs for later
 var geocoder;
-var DirectionsService;
-var DirectionsDisplay;
+var directionsService;
+var directionsDisplay;
+var distanceMatrixService;
 var map;
 var store_markers = [];
 
@@ -85,6 +87,7 @@ function initMap() {
     geocoder = new google.maps.Geocoder();
     directionsService = new google.maps.DirectionsService();
     directionsDisplay = new google.maps.DirectionsRenderer();
+    distanceMatrixService = new google.maps.DistanceMatrixService();
     map = new google.maps.Map(document.getElementById('map'), {
         center: {
             lat: 37.3209654,
@@ -104,10 +107,10 @@ function initMap() {
 
     // geocode user_address
     // for temporary purposes you can also hardset user_address for debugging
-    var user_address = document.getElementById('address').value;
-    date = document.getElementById('date').value;
+    var user_address = document.getElementById("address").value;
+    date = document.getElementById("date").value;
     if (user_address === "empty") {
-        console.log("user_address is not valid or was not found");
+        alert("user_address is not valid or was not found");
     } else {
         // geocode address, find nearest store, draw directions here
         codeAddressAndDisplayRoute(user_address);
@@ -139,10 +142,29 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, origin, 
     }, function(response, status) {
         if (status === google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
+            estimateTimeAlert(origin, destination);
         } else {
             window.alert('Directions request failed due to ' + status);
         }
     });
+}
+
+function estimateTimeAlert(origin, destination) {
+    distanceMatrixService.getDistanceMatrix({
+        origins: [origin],
+        destinations: [destination],
+        travelMode: google.maps.TravelMode.DRIVING
+    }, et_callback);
+
+    function et_callback(response, status) {
+        if (status == google.maps.DistanceMatrixStatus.OK) {
+            // should only get one result back
+            var result = response.rows[0].elements[0];
+            var duration = result.duration.text;
+            var distance = result.distance.text;
+            alert("The estimated time of delivery is " + duration + " for a distance of " + distance);
+        }
+    }
 }
 
 function calculateDistance(p1, p2) {
@@ -163,18 +185,32 @@ function codeAddressAndDisplayRoute(address) {
                 position: results[0].geometry.location
             });
             user_address_g = {
-                lat: results[0].geometry.location[0],
-                lng: results[0].geometry.location[1]
+                lat: results[0].geometry.location.lat(),
+                lng: results[0].geometry.location.lng()
             };
+            // check if location is within a county that we service
             // find nearest store location
-            var nearest_store_location = nearestStore(user_address_g);
-            // calculate and display route
-            // directionsService and directionsDisplay should be known since refs are moved out to be global
-            calculateAndDisplayRoute(directionsService, directionsDisplay, user_address_g, nearest_store_location);
+            var county_name = results[0].address_components[4].long_name;
+            if (withinServiceableCounty(county_name)) {
+                var nearest_store_location = nearestStore(user_address_g);
+                // calculate and display route
+                // directionsService and directionsDisplay should be known since refs are moved out to be global
+                calculateAndDisplayRoute(directionsService, directionsDisplay, user_address_g, nearest_store_location);
+            } else {
+                alert("We are sorry, but we do not service your area");
+            }
         } else {
             alert("Geocode was not successful for the following reason: " + status);
         }
     });
+}
+
+function withinServiceableCounty(county_name) {
+    if (service_counties.indexOf(county_name) >= 0) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 // return the position of closest store
