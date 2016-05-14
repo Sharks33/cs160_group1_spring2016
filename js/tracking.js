@@ -231,7 +231,8 @@ function nearestStore(destination) {
     for (var i in stores) {
         dists[i] = calculateDistance(stores[i].location, destination);
     }
-    for (var i in dists) {
+    i = 0;
+    for (i in dists) {
         if (dists[i] < dists[closestStoreIndex]) {
             closestStoreIndex = i;
         }

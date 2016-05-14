@@ -12,7 +12,7 @@ if($conn -> connect_error){
 $address = "empty";
 $date = "empty";
 if (isset($_GET['PurchaseID'])) {
-    $query = "SELECT `Users.Address` AS `Address`, `Purchase.Date` AS `Date` FROM `Purchase` INNER JOIN `Users` ON `Purchase.UserName` = `Users.UserName` WHERE `PurchaseID` = " . $_GET['PurchaseID'];
+    $query = "SELECT `Users.Address` AS `Address`, `Purchase.Date` AS `Date` FROM `Purchase` INNER JOIN `Users` ON `Purchase.UserName` = `Users.UserName` WHERE `Purchase.PurchaseID` = " . $_GET['PurchaseID'];
     $result = $conn->query($query);
     // only one result is expected
     $row = mysqli_fetch_assoc($result);
