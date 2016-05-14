@@ -13,7 +13,10 @@ if($conn -> connect_error){
 $address = "empty";
 $date = "empty";
 if (isset($_GET['PurchaseID'])) {
-    $query = "SELECT `Users.Address` AS `Address`, `Purchase.Date` AS `Date` FROM `Purchase` INNER JOIN `Users` ON `Purchase.UserName` = `Users.UserName` WHERE `Purchase.PurchaseID` = " . $_GET['PurchaseID'];
+    $purchaseID = $_GET['PurchaseID'];
+    // $query = "SELECT `Users.Address` AS `Address`, `Purchase.Date` AS `Date` FROM `Purchase` INNER JOIN `Users` ON `Purchase.UserName` = `Users.UserName` WHERE `Purchase.PurchaseID` = " . $_GET['PurchaseID'];
+    $query = "SELECT Users.Address, Purchase.Date FROM Users, Purchase WHERE PurchaseID = $purchaseID ";
+    // echo "<p>" . $query . "</p>";
     $result = $conn->query($query);
     while($row = $result->fetch_assoc())
     {
