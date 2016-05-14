@@ -15,12 +15,11 @@ $date = "empty";
 if (isset($_GET['PurchaseID'])) {
     $query = "SELECT `Users.Address` AS `Address`, `Purchase.Date` AS `Date` FROM `Purchase` INNER JOIN `Users` ON `Purchase.UserName` = `Users.UserName` WHERE `Purchase.PurchaseID` = " . $_GET['PurchaseID'];
     $result = $conn->query($query);
-    if(is_object($result) && $result->num_rows > 0)
+    while($row = $result->fetch_assoc())
     {
-      while($row = $result->fetch_assoc()) {
-        $address = $row["Address"];
-        $date = $row["Date"];
-      }
+      $address = $row["Address"];
+      $date = $row["Date"];
+      // $address = "1601 Clay Street, Oakland, CA 94612";
     }
 } else {
     echo "<p>No PurchaseID provided.</p>";
