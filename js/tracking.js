@@ -190,14 +190,17 @@ function codeAddressAndDisplayRoute(address) {
             };
             // check if location is within a county that we service
             // find nearest store location
-            var aal2_index;
+            var aal2_index = -1;
             for (var i in results[0].address_components) {
                 if (results[0].address_components[i].types[0] === "administrative_area_level_2") {
                     aal2_index = i;
                     break;
                 }
             }
-            var county_name = results[0].address_components[aal2_index].long_name;
+            var county_name = "";
+            if (aal2_index >= 0) {
+                county_name = results[0].address_components[aal2_index].long_name;
+            }
             if (withinServiceableCounty(county_name)) {
                 var nearest_store_location = nearestStore(user_address_g);
                 // calculate and display route
