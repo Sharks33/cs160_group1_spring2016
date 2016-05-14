@@ -112,6 +112,10 @@ session_start();
           </div>
         </div>
 
+        <p>
+        <b>DISCLOSURE: This site was built for educational purposes ONLY. Any pictures, verbiage, logos etc. may be borrowed from other websites and are used striclty for example purposes. We do not claim ownership!</b>
+        </p>
+
         <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
         <script src="./js/about_maps.js"></script>
         <?php include 'footer.php'; ?>
