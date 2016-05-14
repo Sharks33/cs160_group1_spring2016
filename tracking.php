@@ -8,7 +8,7 @@ if($conn -> connect_error){
     die("Connection failed: " . $conn->connect_error);
 }
 
-// check if parameter PurchaseID is passed in
+// check if parameter PurchaseID is passed in 
 $address = "empty";
 $date = "empty";
 if (isset($_GET['PurchaseID'])) {
@@ -21,8 +21,7 @@ if (isset($_GET['PurchaseID'])) {
 } else {
     echo "<p>No PurchaseID provided.</p>";
 }
-
-echo <<<EOT
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,7 +36,7 @@ echo <<<EOT
             margin: 0;
             padding: 0;
         }
-
+        
         #map {
             height: 100%;
         }
@@ -47,17 +46,11 @@ echo <<<EOT
 <body>
     <div id="map"></div>
     <!-- only required to be element in DOM so script can retrieve value -->
-EOT;
-
-    // echo "<input id='address' value='$address'>";
-    echo "<input id='address' value='1601 Clay Street, Oakland, CA 94612'>";
-    echo "<input id='date' value='$date'>";
-    echo <<<EOT
+    <input id="address" value="<?php echo $address ?>">
+    <input id="date" value="<?php echo $date ?>">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8K3fPftUM4lvEcd4YMl6ilBC4LNnqAVA&callback=initMap&libraries=geometry,places" async defer></script>
     <script src="./js/tracking.js"></script>
 </body>
-</html>
-EOT;
 
-?>
+</html>
