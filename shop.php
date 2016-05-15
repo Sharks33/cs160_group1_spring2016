@@ -130,7 +130,7 @@ EOT;
       {
         var price = $("#totalPrice").text();
         var user = $("#userName").text();
-        if(price == "") {
+        if(price == "" || price == 0) {
           $("#buyingItem").html("<div class='alert alert-danger'> You didn't buy anything</div>");
         }
         else
