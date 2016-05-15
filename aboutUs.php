@@ -28,7 +28,7 @@ session_start();
             }
             ?>
             <hr>
-              <nav id="map"></nav>
+              <!-- <nav id="map"></nav> -->
           </div>
         </div>
 
