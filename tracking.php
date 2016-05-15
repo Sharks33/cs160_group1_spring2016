@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <?php
 // header('Content-Type: text/html');
-
+include 'header.php';
+echo <<<EOT
+<div class='container'>
+<div class='row'>
+</div>
+<button type='button' class='btn btn-info'><a href='orderHistory.php' style='text-decoration:none'> Head Back To Order History. </a></button>
+</div>
+<br>
+EOT;
 // set connection
 include 'connectionString.php';
 $conn = new mysqli("localhost", $usernameDB, $passwordDB, $database);
