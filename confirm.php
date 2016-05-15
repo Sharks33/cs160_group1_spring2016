@@ -57,11 +57,11 @@ EOT;
 
   if(isset($_SESSION['expiration']))
   {
-  echo "<label for='card_expire'>Expiration Date (mmyy):</label><input type='number' name='card_expire' class='form-control' id='card_expire' min='0' max='9999' maxlength='4' placeholder='MMYY' value=" . $_SESSION['expiration'] . " pattern='[0-9]{4}' required ></div>";
+  echo "<label for='card_expire'>Expiration Date (mmyy):</label><input type='text' min='1111' max='9999'name='card_expire' class='form-control' id='card_expire' placeholder='MMYY' value=" . $_SESSION['expiration'] . " pattern='[0-9]{4}' required ></div>";
   }
   else
   {
-  echo "<label for='card_expire'>Expiration Date (mmyy):</label><input type='number' name='card_expire' class='form-control' id='card_expire' min='0' max='9999' maxlength='4' placeholder='MMYY' pattern='[0-9]{4}' required ></div>";
+  echo "<label for='card_expire'>Expiration Date (mmyy):</label><input type='text' min='1111' max='9999' name='card_expire' class='form-control' id='card_expire' placeholder='MMYY' pattern='[0-9]{4}' required ></div>";
   }
 
 echo <<<EOT
@@ -88,18 +88,21 @@ EOT;
       var expiration = $("#card_expire").val(); // works
       var payment = $("#payment").val(); // works
       var creditCard = document.getElementById("creditCardInput").value;
-      creditCard = parseInt(creditCard);
-      if (creditCard != "" && !(isNaN(creditCard)) && expiration != '' && payment != '-')
+      if(expiration.length == 4)
       {
-        $.ajax({
-          url: 'processOrder.php',
-          type: 'POST',
-          data: {"CartItems": JSON.stringify(cartItems), "UserName": user, "creditCard":creditCard, 'expiration': expiration, 'payment' : payment},
-          success: function(data)
-          {
-            $("html").html(data);
-          }
-        });
+        creditCard = parseInt(creditCard);
+        if (creditCard != "" && !(isNaN(creditCard)) && expiration != '' && payment != '-')
+        {
+          $.ajax({
+            url: 'processOrder.php',
+            type: 'POST',
+            data: {"CartItems": JSON.stringify(cartItems), "UserName": user, "creditCard":creditCard, 'expiration': expiration, 'payment' : payment},
+            success: function(data)
+            {
+              $("html").html(data);
+            }
+          });
+        }
       }
       else {
         $("#panelColor").removeClass("panel-info").addClass("panel-danger");
